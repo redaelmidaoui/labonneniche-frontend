@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
 
-function LoginPage() {
+function Login() {
     return (
         <div className={styles.homeContainer}>
             <div className={styles.imageSection}>
@@ -19,4 +19,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default Login;

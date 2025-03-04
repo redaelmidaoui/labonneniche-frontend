@@ -35,22 +35,22 @@
 }
 
 .h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #01A076;
     margin-bottom: 0.2rem;
 }
 
 .h1complete {
     margin-top: 0.2rem;
-    font-size: 3.2rem;
+    font-size: 4rem;
     color: #01A076;
 }
 
 .button {
     margin: 10px;
-    padding: 12px 24px;
+    padding: 10px 30px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 500;
     color: #01A076;
     background-color: white;
     border: none;

@@ -1,8 +1,8 @@
-import LoginPage from './LoginPage';
+import Login from './login';
 import '../styles/Login.module.css'
 
 function Index() {
-  return <LoginPage />;
+  return <Login />;
 }
 
 export default Index;

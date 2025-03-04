@@ -1,4 +1,3 @@
-import './SignInPage.css';
 import Header from '../components/Header';
 import SocialLoginButtons from '../components/SocialLoginButtons';
 
