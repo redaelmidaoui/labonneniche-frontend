@@ -71,7 +71,23 @@ function SocialLoginButtons() {
 
     const handleFacebookLogin = () => {
         window.FB.login(response => {
-            console.log('Réponse Facebook :', response);
+            if (response.authResponse) {
+                fetch('/users/facebook-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ accessToken: response.authResponse.accessToken }),
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.result) {
+                        console.log("Connexion Facebook réussie !", data);
+                    } else {
+                        console.error("Echec connexion Facebook", data.error);
+                    }
+                });
+            } else {
+                console.log('Utilisateur a annulé');
+            }
         }, { scope: 'email' });
     };
 
