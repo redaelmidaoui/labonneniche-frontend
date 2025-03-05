@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+    padding-bottom: 5%;
+    border-bottom: 1px solid #cccccc;
+    width: 100vw;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.socialButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: white;
+    font-weight: bold;
+    border: 1px solid #cccccc;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: Arial, sans-serif;
+}
+
+.socialButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    font-size: 20px;
+}
+
+.google {
+    color: black;
+}
+
+.google:hover {
+    box-shadow: inset 0px 1px 5px #cccccc;
+}
+
+.facebook {
+    color: black;
+}
+
+.facebook:hover {
+    box-shadow: inset 0px 1px 5px #cccccc;
+}

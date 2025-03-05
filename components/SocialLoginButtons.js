@@ -1,8 +1,10 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import styles from '../styles/SocialLoginButtons.module.css';
 import { useEffect } from 'react';
 
 function SocialLoginButtons() {
 
-    // Chargement du SDK Google au montage du composant
     useEffect(() => {
         const script = document.createElement('script');
         script.src = "https://accounts.google.com/gsi/client";
@@ -10,18 +12,16 @@ function SocialLoginButtons() {
         script.onload = initializeGoogle;
         document.body.appendChild(script);
 
-        // Chargement du SDK Facebook
         window.fbAsyncInit = function() {
             window.FB.init({
                 appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
                 cookie: true,
                 xfbml: true,
-                version:'v18.0',
+                version: 'v18.0',
             });
         };
 
-
-        (function(d ,s , id){
+        (function(d, s, id) {
             let js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) { return; }
             js = d.createElement(s); js.id = id;
@@ -30,7 +30,6 @@ function SocialLoginButtons() {
         }(document, 'script', 'facebook-jssdk'));
     }, []);
 
-    // Initialisation du bouton Google
     const initializeGoogle = () => {
         window.google.accounts.id.initialize({
             client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
@@ -43,45 +42,30 @@ function SocialLoginButtons() {
         );
     };
 
-    // Callback Google
     const handleGoogleCallback = (response) => {
-        fetch('https://1fd0-2001-861-e3c3-93b0-c8e7-7ea2-2627-8532.ngrok-free.app/users/google-login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ credential: response.credential }),
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log('Google Login Success: ', data);
-            // Le token est sauvegardé ou redirigé
-        })
-        .catch(err => console.error('Google Login Error:', err));
+        console.log('Google callback reçu !', response);
     };
 
-    // Login Facebook
+    const handleGoogleLogin = () => {
+        window.google.accounts.id.prompt();
+    };
+
     const handleFacebookLogin = () => {
         window.FB.login(response => {
-            if (response.authResponse) {
-                fetch('https://1fd0-2001-861-e3c3-93b0-c8e7-7ea2-2627-8532.ngrok-free.app/users/facebook-login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body:JSON.stringify({ accessToken: response.authResponse.accessToken }),
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log('Facebook Login Success: ', data);
-                    // Le token est sauvegardé ou redirigé
-                })
-                .catch(err => console.error('Facebook Login Error: ', err));
-            }
+            console.log('Réponse Facebook :', response);
         }, { scope: 'email' });
     };
 
-
     return (
-        <div className="social-buttons">
-            <div id="googleLoginButton"></div>
-            <button onClick={handleFacebookLogin} className="facebook-btn">Connexion avec Facebook</button>
+        <div className={styles.container}>
+            <button onClick={handleGoogleLogin} className={`${styles.socialButton} ${styles.google}`}>
+                <FontAwesomeIcon icon={faGoogle} className={styles.icon} />
+                Connexion avec Google
+            </button>
+            <button onClick={handleFacebookLogin} className={`${styles.socialButton} ${styles.facebook}`}>
+                <FontAwesomeIcon icon={faFacebook} className={styles.icon} />
+                Connexion avec Facebook
+            </button>
         </div>
     );
 }

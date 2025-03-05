@@ -4,6 +4,7 @@ import SocialLoginButtons from '../components/SocialLoginButtons';
 import styles from '../styles/Signup.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import Footer from '../components/Footer';
 
 function SignUpPage() {
     const [formData, setFormData] = useState({
@@ -74,7 +75,6 @@ function SignUpPage() {
     return (
         <div className={styles.signupContainer}>
             <Header />
-            <h2>PAGE INSCRIPTION</h2>
             <SocialLoginButtons />
 
             <div className={styles.formWrapper}>
@@ -157,6 +157,8 @@ function SignUpPage() {
             <button className={`${styles.submitButton}`} onClick={handleSubmit}>
                 <FontAwesomeIcon icon={faPlay} />
             </button>
+
+            <Footer />
         </div>
     );
 }

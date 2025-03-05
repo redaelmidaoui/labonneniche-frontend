@@ -1,0 +1,36 @@
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100vw;
+    height: 60px;
+    padding-bottom: 2%;
+}
+
+.logo {
+    color: #01A076;
+    font-size: 25px;
+    margin: 0;
+}
+
+.icon {
+    display: flex;
+    gap: 20px;
+}
+
+.singleIcon {
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+}
+
+.singleIcon:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    color: #01A076;
+}
+
+.singleIcon.active {
+    color: #01A076;
+}
