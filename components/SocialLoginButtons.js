@@ -1,9 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import styles from '../styles/SocialLoginButtons.module.css';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 function SocialLoginButtons() {
+    const router = useRouter();
 
     useEffect(() => {
 
@@ -14,7 +16,10 @@ function SocialLoginButtons() {
         const script = document.createElement('script');
         script.src = "https://accounts.google.com/gsi/client";
         script.async = true;
-        script.onload = initializeGoogle;
+        script.onload = () => {
+            console.log("✅ SDK Google chargé !");
+            initializeGoogle();
+        };
         document.body.appendChild(script);
 
         // L'appId de Facebook doit être configurée (elle doit 
@@ -46,24 +51,48 @@ function SocialLoginButtons() {
         window.google.accounts.id.initialize({
             client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
             callback: handleGoogleCallback,
+            ux_mode: 'popup',   // 💣 BAM ! Adieu FedCM
+            itp_support: true,  // Optionnel, mais aide avec les cookies cross-site
         });
-
-        window.google.accounts.id.renderButton(
-            document.getElementById("googleLoginButton"),
-            { theme: "outline", size: "large" }
-        );
-    };
-
-    const handleGoogleCallback = (response) => {
-        console.log('Google callback reçu !', response);
     };
 
     // A l'appui sur le bouton "connection avec Google", 
     // un pop-up propre au navigateur s'affiche pour 
     // authentifier le client
-
+    
     const handleGoogleLogin = () => {
+        console.log("🔍 SDK Google :", window.google?.accounts?.id);
+        console.log("🔍 GOOGLE CLIENT_ID :", process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
+        console.log('→ handleGoogleLogin');
+        
         window.google.accounts.id.prompt();
+
+    };
+    
+    const handleGoogleCallback = (response) => {
+        console.log('✅ Google nous a donné ça (callback reçu)', response);
+        if (!response.credential) {
+            console.error("❌ Pas de credential reçu, FedCM a encore frappé...");
+            return;
+        }
+
+        fetch('/users/google-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ credential: response.credential })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.result) {
+                console.log("→ Connexion Google réussie !", data);
+                router.push(`/next?token=${data.token}&firstname=${encodeURIComponent(data.firstname)}`);
+            } else {
+                console.error("→ Echec connexion Google", data.error);
+            }
+        })
+        .catch(err => {
+            console.error("→ Erreur réseau :", err);
+        });
     };
 
     // Même chose normalement du côté de Facebook,
@@ -81,9 +110,13 @@ function SocialLoginButtons() {
                 .then(data => {
                     if (data.result) {
                         console.log("Connexion Facebook réussie !", data);
+                        router.push(`/next?token=${data.token}&firstname=${encodeURIComponent(data.firstname)}`);
                     } else {
                         console.error("Echec connexion Facebook", data.error);
                     }
+                })
+                .catch(err => {
+                    console.log('Utilisateur a annulé la connexion Facebook');
                 });
             } else {
                 console.log('Utilisateur a annulé');
