@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [],
+    domains: ['images.ctfassets.net', "www.centrale-canine.fr", "img.freepik.com", "www.animoz.net" ],
   },
 };
 

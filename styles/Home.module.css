@@ -1,22 +1,102 @@
-.main {
+.container{
+  width: 100vw;
+  height: 100vh;
+  background-color: #f7f2f2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 4rem 0;
 }
 
-.title {
-  line-height: 1.15;
-  font-size: 4rem;
+.searchBar{
+  width: 60%;
+  height: 8%;
+  background-color: white;
+  border-radius: 30px / 25px;
+  border: 1px solid rgb(199, 197, 197);
+  margin-top: 5%;
+  display: flex;
+ 
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.type{
+  width: 30%;
+  border-right: 1px solid rgb(182, 181, 181);
+  height: 70%;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
-.title a:hover, .title a:focus, .title a:active {
-  text-decoration: underline;
+.age{
+  width: 30%;
+  border-right: 1px solid rgb(182, 181, 181);
+  height: 70%;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.genre{
+  width: 30%;
+  height: 70%;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.h4{
+  margin: 0;
+  height: 50%;
+  margin-top: -1%;
+}
+
+.select{
+  border: none;
+  margin-top: 3%;
+  color: rgb(176, 173, 173); 
+}
+
+
+.option{
+  color: black;
+}
+
+.btnSearch{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #01A076;
+  margin-top: 40%;
+  cursor: pointer;
+}
+
+.divNav{
+  display: flex;
+  width: 100vw;
+  height: 10%;
+  border-bottom: 1px solid rgb(123, 120, 120);
+  justify-content: space-evenly;
+}
+
+.link{
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 1%;
+}
+
+.divAds{
+  display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+  justify-content: space-evenly;
+  margin: 0;
+	width:100vw;
+  height: 100%;
 }
