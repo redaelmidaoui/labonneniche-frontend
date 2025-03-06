@@ -16,15 +16,16 @@ function SignInPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/users/signin', {
+        fetch('http://localhost:3000/users/signin', { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
-        })
+         })
+         
         .then(res => res.json())
         .then(data => {
             if (data.result) {
-                alert('Connexion réussie ! Bienvenue 😎');
+                localStorage.setItem('userId', data.userId);
             } else {
                 alert(`Erreur : ${data.error}`);
             }

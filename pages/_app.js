@@ -4,10 +4,15 @@ import Head from "next/head";
 // redux imports
 import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
 import favorites from '../reducers/favorites';
+import users from '../reducers/users';
 
 const store = configureStore({
-    reducer: { favorites },
+    reducer: {
+        favorites,
+        users,
+     },
   });
 
 function App({ Component, pageProps }) {
