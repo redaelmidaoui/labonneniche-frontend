@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'; 
 import Link from 'next/link';
 import Card from './Card';
+import Header from './Header';
+import Footer from './Footer';
 
 function Home() {
   const [type, setType] = useState("");
@@ -43,6 +45,7 @@ function Home() {
 
   return (
     <div className={styles.container}>
+      <Header />
       <div className={styles.searchBar}>
         <div className={styles.type}>
           <p className={styles.h4}>Type</p>
@@ -98,6 +101,7 @@ function Home() {
       <div className={styles.divAds}>
         {cards}
       </div>
+      <Footer />
     </div>
   );
 }
