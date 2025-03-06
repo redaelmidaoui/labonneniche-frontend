@@ -1,0 +1,160 @@
+.signupContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.rightContent {
+    margin-right: 5%;
+    padding-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 5%;
+}
+
+.leftContent {
+    padding-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-between;
+    margin-left: 5%;
+    align-items: flex-start;
+}
+
+
+.formWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.questionBlock {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.legend {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20%;
+    padding-right: 5px;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    width: 100%;
+    border: none;
+}
+
+.label {
+    font-weight: bold;
+    min-width: 120px;
+    text-align: left;
+}
+
+.answer {
+    flex: 1;
+    border-radius: 20px;
+    border: 1px solid #cccccc;
+    padding: 5px 10px;
+}
+
+.response {
+    padding: 20px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+}
+
+.button {
+    cursor: pointer;
+    padding: 5px 15px;
+    border: 1px solid #01A076;
+    background-color: white;
+    color: #01A076;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    width: 20%;
+    margin: 2%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.button.active {
+    background-color: #01A076;
+    color: white;
+    transform: scale(1.1);
+}
+
+.submitButton {
+    margin-left: 92%;
+    cursor: pointer;
+    padding: 8px 15px;
+    border: 1px solid #01A076;
+    background-color: white;
+    color: #01A076;
+    border-radius: 20%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    width: 85px;
+    height: 45px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.submitButton:hover, .submitButton.active {
+    background-color: #01A076;
+    color: white;
+    transform: scale(1.1);
+}
+
+.radioGroup {
+    display: flex;
+    gap: 15px;
+}
+
+.radioGroup label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: white;
+    color: #01A076;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Pour modifier les boutons radio, les vrais ont été cachés et remplacés par un style custom */
+
+.radioGroup input {
+    display: none; 
+}
+
+.radioGroup input:checked + span {
+    background-color: #01A076;
+    border: #01A076, 1px, solid;
+    border-radius: 15px;
+    padding: 5px;
+    color: white;
+}

@@ -1,15 +1,7 @@
 import '../styles/globals.css';
-import Head from 'next/head';
 
-function App({ Component, pageProps }) {
-  return (
-    <>
-      <Head>
-        <title>Next.js App</title>
-      </Head>
-      <Component {...pageProps} />
-    </>
-  );
+function MyApp({ Component, pageProps }) {
+    return <Component {...pageProps} />;
 }
 
-export default App;
+export default MyApp;
