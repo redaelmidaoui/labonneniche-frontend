@@ -3,8 +3,31 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-function Card(props) {
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite, removeFavorite } from '../reducers/favorites';
 
+function Card(props) {
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.value);
+
+    const handleBookmarkClick = () => {
+        if (!user.token) {
+          return;
+        }
+    
+        fetch(`http://localhost:3000/users/${user.token}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.result) {
+              if (props.isBookmarked) {
+                dispatch(removeFavorite(props));
+              } else {
+                dispatch(addFavorite(props));
+              }
+            }
+          });
+      }
+    
     return (
         <div className={styles.divCard}>
             <div className={styles.card}>
