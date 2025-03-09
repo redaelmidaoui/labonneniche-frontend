@@ -14,11 +14,11 @@ export const favoritesSlice = createSlice({
 		removeFavorite: (state, action) => {
 			state.value = state.value.filter(bookmark => bookmark.title !== action.payload.title);
 		},
-		removeAllFavorite: (state) => {
-			state.value = [];
-		},
+		setFavorites: (state, action) => {
+			state.value = action.payload || []; // Remplace par la liste correcte depuis la BDD
+		  },
 	},
 });
 
-export const { addFavorite, removeFavorite, removeAllFavorite } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, setFavorites } = favoritesSlice.actions;
 export default favoritesSlice.reducer;

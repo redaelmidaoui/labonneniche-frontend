@@ -5,9 +5,10 @@ import Head from "next/head";
 import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import favorites from '../reducers/favorites';
+import user from '../reducers/user';
 
 const store = configureStore({
-    reducer: { favorites },
+    reducer: { favorites, user },
   });
 
 function App({ Component, pageProps }) {
