@@ -71,7 +71,7 @@ function Calendar({ userToken }) {
     };
 
     const { firstDay, daysInMonth } = getDaysInMonth();
-    const days = [...Array(daysInMonth)].map((_, i) => i + 1); // Crée un tableau [jours du mois]
+    const days = [...Array(daysInMonth)].map((_, i) => i ); // Crée un tableau [jours du mois]
     const emptyDays = [...Array(firstDay)].map((_, i) => i); // Jours vides avant le premier jour du mois
 
     return (
