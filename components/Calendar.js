@@ -31,8 +31,10 @@ function Calendar({ userToken }) {
         const year = currentMonth.getFullYear();
         const month = currentMonth.getMonth();
         const firstDay = new Date(year, month, 1).getDay(); // Jour de la semaine où commence le mois (0 = dimanche, 1 = lundi)
+        const adjustedFirstDay = firstDay === 0 ? 7 : firstDay;
         const daysInMonth = new Date(year, month + 1, 0).getDate(); // Nombre total de jours dans le mois
-        return { firstDay, daysInMonth };
+        console.log(firstDay);
+        return { adjustedFirstDay, daysInMonth };
     };
 
     // Fonction pour gérer le clic sur un jour du calendrier
@@ -70,9 +72,9 @@ function Calendar({ userToken }) {
         .catch(err => console.error("Erreur d'enregistrement du calendrier", err));
     };
 
-    const { firstDay, daysInMonth } = getDaysInMonth();
+    const { adjustedFirstDay, daysInMonth } = getDaysInMonth();
     const days = [...Array(daysInMonth)].map((_, i) => i + 1); // Crée un tableau [jours du mois]
-    const emptyDays = [...Array(firstDay)].map((_, i) => i); // Jours vides avant le premier jour du mois
+    const emptyDays = [...Array(adjustedFirstDay - 1)].map((_, i) => i); // Jours vides avant le premier jour du mois
 
     return (
         <div className={styles.calendarContainer}>
