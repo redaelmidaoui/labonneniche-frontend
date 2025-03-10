@@ -1,0 +1,120 @@
+.month {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #01A076;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 7px 155px 7px 155px;
+    border-radius: 10px;
+    box-shadow: 0px 1px 2px Rgba(0, 0, 0, 0.4);
+}
+
+.calendarContainer {
+    display: flex;
+	flex-flow: column;
+	align-items: center;
+    width: 20px;
+    margin-right: 20%;
+
+}
+
+.calendarGrid {
+    display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	flex-wrap: wrap;
+	list-style: none;
+}
+
+.day {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: flex;
+    margin: 5px;
+    flex-flow: column;
+    border-radius: 0.2rem;
+    padding: 15px;
+    font-size: 12px;
+    box-sizing: border-box;
+    background-color: #cccccc;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.unavailable {
+    background-color: black;
+    color: white;
+}
+
+.appointment {
+    background-color: #01A076;
+    color: white;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.unavailableButton {
+    background-color: black;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    margin-top: 40%;
+    box-shadow: 0px 1px 2px Rgba(0, 0, 0, 0.5);
+}
+
+.appointmentButton {
+    background-color: #01A076;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    margin-top: 40%;
+    box-shadow: 0px 1px 2px Rgba(0, 0, 0, 0.5);
+    margin-left: 40px;
+}
+
+.weekDays {
+    display: grid;
+    width: 200px;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	flex-wrap: wrap;
+	list-style: none;
+    margin-right: 158px;
+}
+
+.weekDay {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: flex;
+    flex-flow: column;
+    padding: 12px;
+    font-size: 8px;
+    box-sizing: border-box;
+    text-align: center;
+    width: 100%;
+}

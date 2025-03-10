@@ -1,7 +1,7 @@
 .container{
   width: 100vw;
-  height: 100vh;
-  background-color: #f7f2f2;
+  
+  background-color: #fafafa;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,19 +9,19 @@
 
 .searchBar{
   width: 60%;
-  height: 8%;
+  height: 30%;
+  padding-bottom: 6px;
   background-color: white;
   border-radius: 30px / 25px;
   border: 1px solid rgb(199, 197, 197);
-  margin-top: 5%;
   display: flex;
- 
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .type{
   width: 30%;
   border-right: 1px solid rgb(182, 181, 181);
-  height: 70%;
+  height: 30%;
   margin-top: 1%;
   display: flex;
   flex-direction: column;
@@ -82,6 +82,7 @@
   height: 10%;
   border-bottom: 1px solid rgb(123, 120, 120);
   justify-content: space-evenly;
+  padding-bottom: 1%;
 }
 
 .link{
@@ -94,9 +95,8 @@
 .divAds{
   display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-  justify-content: space-evenly;
   margin: 0;
 	width:100vw;
   height: 100%;
+  padding-bottom: 100px;
 }

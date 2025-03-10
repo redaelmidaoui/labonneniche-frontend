@@ -1,11 +1,17 @@
 .card{
     margin-top: 2%;
-    height: 90%;
-    width: 20%;
-    border: 1px solid grey;
+    height: 500px;
+    width: 65%;
     border-radius: 40px;
     background-color: white;
-    
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.divCard{
+    width: 33%;
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
 }
 
 .image{
@@ -31,3 +37,7 @@
  margin-top: -10%;
 }
 
+.adresse{
+    font-size: 15px;
+    color: rgb(141, 139, 138);
+}

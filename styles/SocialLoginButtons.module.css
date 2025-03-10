@@ -41,10 +41,7 @@
     box-shadow: inset 0px 1px 5px #cccccc;
 }
 
-.facebook {
-    color: black;
+.hiddenButton {
+    display: none;
 }
 
-.facebook:hover {
-    box-shadow: inset 0px 1px 5px #cccccc;
-}

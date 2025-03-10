@@ -1,0 +1,236 @@
+.accountContainer {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-left: 60px;
+    height: 100vh;
+}
+
+.reminderText {
+    margin-bottom: 20px;
+    font-size: 10px;
+    color: #555;
+}
+
+.profileSection {
+    margin-top: 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    height: 50vh;
+}
+
+.profileInfo {
+    width: 30%;
+}
+
+.mention{
+    font-size: 12px;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.profilePhoto {
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #ccc;
+    border-radius: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    margin-right: 150px;
+}
+
+.profilePhoto img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 20%;
+}
+
+.noBorder {
+    border: none !important;
+}
+
+.profilePhoto:hover .modifyButton {
+    opacity: 1;
+}
+
+.modifyButton {
+    position: absolute;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-size: 10px;
+    text-decoration: underline;
+    text-align: center;
+    display: inline;
+    z-index: 1000;
+}
+
+.modifyText {
+    font-size: 6px;
+    color: #cccccc;
+    text-decoration: underline;
+}
+
+.photoIcon {
+    font-size: 17px;
+}
+
+.calendar {
+    width: 30%;
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin-right: 60px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20%;
+    margin-right: 60%;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 12px;
+    width: 150px;
+    height: 80px;
+    margin-bottom: 15%;
+    box-shadow: 0px 3px 6px Rgba(0, 0, 0, 0.4);
+}
+
+.button:hover {
+    transform: scale(1.05);
+}
+
+.buttonRight {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    background-color: white;
+    color: black;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 12px;
+    width: 150px;
+    height: 80px;
+    margin-left: 40px;
+    margin-bottom: 15%;
+    box-shadow: 0px 3px 6px Rgba(0, 0, 0, 0.4);
+}
+
+.buttonRight:hover {
+    transform: scale(1.05);
+}
+
+.buttonIcon {
+    padding-top: 14px;
+    padding-bottom: 10px;
+}
+
+.input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px O;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.editButton {
+    margin-bottom: 5%;
+    background-color: #01A076;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    box-shadow: 0px 1px 2px Rgba(0, 0, 0, 0.4);
+}
+
+.editButton:hover {
+    background-color: black;
+}
+
+.radioField {
+    margin-top: 10px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: space-between;
+    margin-left: 0%;
+}
+
+.radioGroup {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.radioGroupOption {
+    accent-color: #01A076; /* formule magique pour modifier la couleur bleue par défaut des boutons radio !!!! */
+    cursor: pointer;
+}
+
+.option {
+    font-size: 10px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.label {
+    font-size: 14px;
+}
+
+.buttonRightPublication {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    background-color: #01A076;
+    color: white;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 12px;
+    width: 150px;
+    height: 80px;
+    margin-left: 40px;
+    margin-bottom: 15%;
+    box-shadow: 0px 3px 6px Rgba(0, 0, 0, 0.4);
+}
+
+.buttonRightPublication:hover {
+    transform: scale(1.05);
+}

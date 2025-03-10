@@ -1,8 +1,8 @@
-import Login from './login';
-import '../styles/Login.module.css'
+import Home from "../components/Home";
+import '../styles/Home.module.css'
 
 function Index() {
-  return <Login />;
+  return <Home />;
 }
 
 export default Index;
