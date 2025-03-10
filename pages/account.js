@@ -4,12 +4,14 @@ import Footer from '../components/Footer';
 import Calendar from '../components/Calendar';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import { login } from '../reducers/users';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDown, faArrowDown, faPenToSquare, faSave } from '@fortawesome/free-solid-svg-icons';
 
 function AccountPage() {
     const dispatch = useDispatch();
+    const router = useRouter();
     const user = useSelector(state => state.users.user);
     const [profileImage, setProfileImage] = useState(user?.profilePhoto || null); 
 
@@ -34,6 +36,10 @@ function AccountPage() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditedData({ ...editedData, [name]: value });
+    };
+
+    const goToPublication = () => {
+        router.push('/publication');
     };
 
     const handleSaveChanges = async () => {
@@ -204,7 +210,7 @@ function AccountPage() {
                             <button className={styles.buttonRight}><FontAwesomeIcon icon={faArrowDown} className={styles.buttonIcon} />Voir la liste<br></br>de vos contacts</button>
                         </div>
                         <div>
-                            <button className={styles.buttonRightPublication}><FontAwesomeIcon icon={faPenToSquare} className={styles.buttonIcon} />Publier<br></br>une annonce</button>
+                            <button className={styles.buttonRightPublication} onClick={goToPublication}><FontAwesomeIcon icon={faPenToSquare} className={styles.buttonIcon} />Publier<br></br>une annonce</button>
                         </div>
                     </div>
             </div>

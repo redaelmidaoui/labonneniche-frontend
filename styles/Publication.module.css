@@ -1,0 +1,21 @@
+.leftSection {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    margin-left: 60px;
+}
+
+.gallery {
+    flex-direction: row;
+}
+
+.imageUpload {
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #cccccc;
+    border-radius: 20%;
+    overflow: hidden;
+    margin-right: 150px;
+    text-align: center;
+}

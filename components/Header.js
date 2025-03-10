@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHouse, faMessage, faCircleArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import LoginReminderPopup from './LoginReminderPopup';
+import Link from 'next/link';
 
 function Header() {
     const router = useRouter();
@@ -27,7 +28,7 @@ function Header() {
 
     return (
         <div className={styles.content}>
-            <h1 className={styles.logo}>la bonne niche</h1>
+            <Link href="/"><h1 className={styles.logo}>la bonne niche</h1></Link>
             <div className={styles.icon}>
                <FontAwesomeIcon 
                     alt="Accueil" 

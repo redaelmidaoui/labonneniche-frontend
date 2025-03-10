@@ -9,16 +9,13 @@ import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import favorites from '../reducers/favorites';
-
-import user from '../reducers/user';
-
 import users, { login } from '../reducers/users';
 
-
-
-
 const store = configureStore({
-    reducer: { favorites, user, users },
+    reducer: {
+        favorites,
+        users,
+     },
   });
 
   // Pour gérer l'initialisation du store de Redux (et donc sa persistance), il faut obligatoirement
