@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import Header from '../components/Header';
 import SocialLoginButtons from '../components/SocialLoginButtons';
 import styles from '../styles/Signup.module.css';
@@ -7,6 +9,9 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../components/Footer';
 
 function SignUpPage() {
+    const dispatch = useDispatch();
+    const router = useRouter();
+
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
@@ -48,6 +53,9 @@ function SignUpPage() {
         .then(res => res.json())
         .then(data => {
             if (data.result) {
+                dispatch(login({ token: data.token, user: data.user })); // On récupère les données de l'utilisateur ici
+                localStorage.setItem('token', data.token); // Puis on les stock
+                router.push('/account'); // Et enfin on redirige l'utilisateur !
                 alert('Inscription réussie !');
                 setFormData({
                     firstname: '',
