@@ -1,7 +1,6 @@
 import styles from '../styles/Home.module.css';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Select from 'react-select';
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'; 

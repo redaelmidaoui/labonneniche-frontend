@@ -1,6 +1,6 @@
 .container{
   width: 100vw;
-  height: 100vh;
+  
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
@@ -81,6 +81,7 @@
   height: 10%;
   border-bottom: 1px solid rgb(123, 120, 120);
   justify-content: space-evenly;
+  padding-bottom: 1%;
 }
 
 .link{
@@ -93,8 +94,6 @@
 .divAds{
   display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-  justify-content: space-evenly;
   margin: 0;
 	width:100vw;
   height: 100%;
