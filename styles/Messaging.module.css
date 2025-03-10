@@ -1,7 +1,48 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 20px;
+}
+
+.contacts {
+    overflow-y: scroll;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.messagingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 40%;
+    border: 1px solid #000000;
     padding: 20px;
+}
+
+.message {
+    display: flex;
+}
+
+.sendContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.messageInput {
+    width: 95%;
+}
+
+.contactsContainer {
+    border: 1px solid #000000;
+    padding: 20px;
+}
+
+.messagesContainer {
+    overflow-y: scroll;
+    height: 400px;
 }
