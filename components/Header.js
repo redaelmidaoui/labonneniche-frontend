@@ -37,7 +37,7 @@ function Header() {
                     onClick={goToHome} 
                     style={{ cursor: 'pointer' }}
                 />
-                <FontAwesomeIcon alt="Messagerie" className={styles.singleIcon} icon={faMessage} />
+                <Link href="/messaging"><FontAwesomeIcon alt="Messagerie" className={styles.singleIcon} icon={faMessage} /></Link>
                 <FontAwesomeIcon 
                     alt="Mon compte"
                     className={styles.singleIcon} 
