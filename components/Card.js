@@ -9,13 +9,12 @@ import { addToken } from "../reducers/user";
 
 function Card(props) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state) => state.users);
   const favorites = useSelector((state) => state.favorites.value);
 
-<<<<<<< HEAD
-  useEffect(() => {
-    dispatch(addToken(""));
-  }, [dispatch]); // Ne s'exécute qu'au montage du composant
+  // useEffect(() => {
+  //   dispatch(addToken(""));
+  // }, [dispatch]); // Ne s'exécute qu'au montage du composant
   
   const handleFavoriteClick = () => {
     if (!user.token) return;
@@ -59,27 +58,6 @@ function Card(props) {
               borderRadius: "30px", // Applique un border-radius directement à l'image
             }}
           ></Image>
-=======
-    return (
-        <div className={styles.divCard}>
-            <div className={styles.card}>
-                <div className={styles.image}>
-                    <Image src={props.picture} alt={props.title} width={300} height={260} style={{
-                        borderRadius: '30px', // Applique un border-radius directement à l'image
-                    }}></Image>
-                </div>
-                <div className={styles.heart}>
-                    <FontAwesomeIcon icon={faHeart} />
-                </div>
-                <div className={styles.infosCard}>
-                    <p className={styles.type}>Type: {props.type}</p>
-                    <p className={styles.type}>Âge: {props.age}</p>
-                    <p className={styles.type}>Genre: {props.genre}</p>
-                    <p>Description: {props.description}</p>
-                    <div className={styles.adresse}>{props.ville} {props.codePostale}</div>
-                </div>
-            </div>
->>>>>>> mathildeFront
         </div>
         <div className={styles.heart}>
           <FontAwesomeIcon

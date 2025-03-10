@@ -10,12 +10,12 @@ import styles from '../styles/Home.module.css';
 
 const Favorites = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state) => state.users);
   const favorites = useSelector((state) => state.favorites.value); // Liste des favoris
 
-  useEffect(() => {
-      dispatch(addToken("ZuPdxUcinProBYSMsduSRf5JCLWqZEIH"));
-    }, [dispatch]);
+  // useEffect(() => {
+  //     dispatch(addToken("ZuPdxUcinProBYSMsduSRf5JCLWqZEIH"));
+  //   }, [dispatch]);
 
   useEffect(() => {
     if (user.token) {
@@ -25,7 +25,7 @@ const Favorites = () => {
         .then((data) => {
           console.log("Données reçues :", data);
           if (data.result) {
-            dispatch(setFavorites(data.favoriteAds)); // Stocke directement les objets favoris
+            dispatch(setFavorites(data.favoriteA)); // Stocke directement les objets favoris
           }
         })
         .catch((error) =>

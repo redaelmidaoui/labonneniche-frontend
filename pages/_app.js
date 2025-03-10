@@ -9,24 +9,16 @@ import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import favorites from '../reducers/favorites';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import users from '../reducers/users';
-=======
-import users, { login } from '../reducers/users';
->>>>>>> mathildeFront
 
-const store = configureStore({
-    reducer: {
-        favorites,
-        users,
-     },
-=======
 import user from '../reducers/user';
 
+import users, { login } from '../reducers/users';
+
+
+
+
 const store = configureStore({
-    reducer: { favorites, user },
->>>>>>> 78ae45c9545445f3f21a899f6572b68c24bd2234
+    reducer: { favorites, user, users },
   });
 
   // Pour gérer l'initialisation du store de Redux (et donc sa persistance), il faut obligatoirement

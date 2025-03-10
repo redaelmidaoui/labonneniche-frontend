@@ -18,7 +18,7 @@ function Home() {
 
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.value);
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state) => state.users);
 
   const router = useRouter();
 
@@ -29,7 +29,7 @@ function Home() {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          dispatch(setFavorites(data.user.favoriteAds)); // Met à jour Redux avec les favoris récupérés
+          dispatch(setFavorites(data.user.favoriteA)); // Met à jour Redux avec les favoris récupérés
         }
       })
       .catch((error) => console.error("Erreur récupération favoris", error));
