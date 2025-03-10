@@ -13,7 +13,7 @@ function Card(props) {
   const favorites = useSelector((state) => state.favorites.value);
 
   useEffect(() => {
-    dispatch(addToken("ZuPdxUcinProBYSMsduSRf5JCLWqZEIH"));
+    dispatch(addToken(""));
   }, [dispatch]); // Ne s'exécute qu'au montage du composant
   
   const handleFavoriteClick = () => {
