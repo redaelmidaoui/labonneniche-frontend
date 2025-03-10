@@ -1,9 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../reducers/users';
 import Header from '../components/Header';
 import SocialLoginButtons from '../components/SocialLoginButtons';
 import styles from '../styles/Signin.module.css';
+import { useRouter } from 'next/router';
 
 function SignInPage() {
+    const dispatch = useDispatch();
+    const router = useRouter();
+
     const [formData, setFormData] = useState({
         mail: '',
         password: '',
@@ -25,12 +31,16 @@ function SignInPage() {
         .then(res => res.json())
         .then(data => {
             if (data.result) {
-                localStorage.setItem('userId', data.userId);
+                dispatch(login({ token: data.token, user: data.user }));
+                localStorage.setItem('token', data.token);
+
+                setFormData({ mail: '', password: '' });
+                router.push('/account');
             } else {
                 alert(`Erreur : ${data.error}`);
             }
         })
-        .catch(err => console.error('Erreur fetch:', err));
+        .catch(() => alert("Impossible de contacter le serveur. Veuillez réessayer"));
     };
 
     return (

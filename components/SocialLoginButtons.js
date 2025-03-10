@@ -1,73 +1,45 @@
-import styles from '../styles/SocialLoginButtons.module.css';
-import { useEffect } from 'react';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+import { login } from '../reducers/users';
 import { useRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
+const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
 
 function SocialLoginButtons() {
+    const dispatch = useDispatch();
     const router = useRouter();
 
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = "https://accounts.google.com/gsi/client";
-        script.async = true;
-        script.defer = true;
-        script.onload = () => initializeGoogle();
-        document.body.appendChild(script);
-    }, []);
-
-    const initializeGoogle = () => {
-        if (!window.google) {
-            console.error("Google SDK non chargé");
-            return;
-        }
-
-        const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
-        if (!clientId) {
-            console.error("NEXT_PUBLIC_GOOGLE_CLIENT_ID manquant");
-            return;
-        }
-
-        window.google.accounts.id.initialize({
-            client_id: clientId,
-            callback: handleGoogleCallback,
-            ux_mode: 'popup',
-        });
-    };
-
-    const handleGoogleLogin = () => {
-        window.google.accounts.id.prompt();
-    };
-
-    const handleGoogleCallback = (response) => {
-        if (!response.credential) {
-            console.error("Aucun credential reçu");
-            return;
-        }
-
-        fetch('/users/google-login', {
+    const handleLogin = (credentialResponse) => {
+        const userData = jwtDecode(credentialResponse.credential);
+    
+        fetch('http://localhost:3000/users/google-login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ credential: response.credential })
+            body: JSON.stringify({ email: userData.email, name: userData.name })
         })
         .then(res => res.json())
         .then(data => {
             if (data.result) {
-                router.push(`/next?token=${data.token}&firstname=${encodeURIComponent(data.firstname)}`);
+                dispatch(login({ token: data.token, user: data.user }));
+                localStorage.setItem('token', data.token);
+                alert("Connexion réussie !");
+                router.push('/');  // 🚀 Redirige vers l'accueil
             } else {
-                console.error("Erreur serveur :", data.error);
+                alert("Erreur de connexion avec Google.");
             }
         })
-        .catch(err => console.error("Erreur réseau :", err));
+        .catch(err => console.error("Erreur lors de la connexion Google", err));
     };
 
     return (
-        <div className={styles.container}>
-            <button className={`${styles.socialButton} ${styles.google}`}>
-                <FontAwesomeIcon icon={faGoogle} className={styles.icon} />
-                Connexion avec Google
-            </button>
-        </div>
+        <GoogleOAuthProvider clientId={clientId}>
+            <GoogleLogin
+                onSuccess={(credentialResponse) => handleLogin(credentialResponse)}
+                on Error={() => console.error("Erreur lors de la connexion avec Google")}
+            />
+        </GoogleOAuthProvider>
     );
 }
 
