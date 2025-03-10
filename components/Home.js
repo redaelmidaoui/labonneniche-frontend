@@ -18,7 +18,6 @@ function Home() {
 
   const router = useRouter();
 
-
   useEffect(() => {
     fetch('http://localhost:3000/ads')
       .then(response => response.json())
