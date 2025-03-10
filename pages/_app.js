@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import favorites from '../reducers/favorites';
+<<<<<<< HEAD
 import users from '../reducers/users';
 
 const store = configureStore({
@@ -13,6 +14,12 @@ const store = configureStore({
         favorites,
         users,
      },
+=======
+import user from '../reducers/user';
+
+const store = configureStore({
+    reducer: { favorites, user },
+>>>>>>> 78ae45c9545445f3f21a899f6572b68c24bd2234
   });
 
 function App({ Component, pageProps }) {
