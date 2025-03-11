@@ -33,7 +33,6 @@ function Calendar({ userToken }) {
         const firstDay = new Date(year, month, 1).getDay(); // Jour de la semaine où commence le mois (0 = dimanche, 1 = lundi)
         const adjustedFirstDay = firstDay === 0 ? 7 : firstDay;
         const daysInMonth = new Date(year, month + 1, 0).getDate(); // Nombre total de jours dans le mois
-        console.log(firstDay);
         return { adjustedFirstDay, daysInMonth };
     };
 
