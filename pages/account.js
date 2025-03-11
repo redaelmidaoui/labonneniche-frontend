@@ -5,14 +5,14 @@ import Calendar from '../components/Calendar';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { login } from '../reducers/users';
+import { login } from '../reducers/user';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDown, faArrowDown, faPenToSquare, faSave } from '@fortawesome/free-solid-svg-icons';
 
 function AccountPage() {
     const dispatch = useDispatch();
     const router = useRouter();
-    const user = useSelector(state => state.users.user);
+    const user = useSelector(state => state.user);
     const [profileImage, setProfileImage] = useState(user?.profilePhoto || null); 
 
     useEffect(() => {

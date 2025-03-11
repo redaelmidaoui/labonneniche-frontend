@@ -1,6 +1,6 @@
 import styles from '../styles/Header.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../reducers/users';
+import { logout } from '../reducers/user';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHouse, faMessage, faCircleArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
@@ -10,7 +10,8 @@ import Link from 'next/link';
 function Header() {
     const router = useRouter();
     const dispatch = useDispatch();
-    const user = useSelector(state => state.users.user);
+    const user = useSelector(state => state.user);
+    console.log(user);
 
     const goToAccount = () => {
         router.push('/account');
@@ -45,7 +46,7 @@ function Header() {
                     onClick={goToAccount}
                     style={{ cursor: 'pointer' }} 
                 />
-                {user && (
+                {user.token && (
                 <FontAwesomeIcon 
                     alt="Se déconnecter" 
                     className={styles.singleIcon} 
@@ -56,7 +57,7 @@ function Header() {
 
                     )}
             </div>
-            {!user && <LoginReminderPopup />}
+            {!user.token && <LoginReminderPopup />}
         </div>
     );
 }

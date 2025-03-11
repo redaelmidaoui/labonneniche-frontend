@@ -1,7 +1,7 @@
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { login } from '../reducers/users';
+import { login } from '../reducers/user';
 import { useRouter } from 'next/router';
 
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;

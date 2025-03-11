@@ -9,12 +9,12 @@ import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import favorites from '../reducers/favorites';
-import users, { login } from '../reducers/users';
+import user from '../reducers/user';
 
 const store = configureStore({
     reducer: {
         favorites,
-        users,
+        user,
      },
   });
 

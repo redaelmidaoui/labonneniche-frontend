@@ -2,10 +2,10 @@ import styles from '../styles/LoginReminderPopup.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToArc } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 function LoginReminderPopup({ isLoggedIn }) {
     const router = useRouter();
+
 
     const goToLogin = () => {
         router.push('/login');

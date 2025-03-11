@@ -54,8 +54,7 @@ function SignUpPage() {
         .then(res => res.json())
         .then(data => {
             if (data.result) {
-                dispatch(login({ token: data.token, user: data.user })); // On récupère les données de l'utilisateur ici
-                localStorage.setItem('token', data.token); // Puis on les stock
+                dispatch(login( data.newDoc )); // On récupère les données de l'utilisateur ici
 
                 setTimeout(() => {
                     router.push('/');

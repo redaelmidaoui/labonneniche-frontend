@@ -18,12 +18,13 @@ function Home() {
 
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.value);
-  const user = useSelector((state) => state.users);
-
+  const user = useSelector((state) => state.user);
+  const token = user.token;
   const router = useRouter();
 
   useEffect(() => {
     if (!user.token) return;
+    console.log(token);
 
     fetch(`http://localhost:3000/users/${user.token}`)  // Route pour récupérer les favoris de la BDD
       .then((response) => response.json())
