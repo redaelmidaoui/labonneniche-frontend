@@ -22,8 +22,8 @@ function SocialLoginButtons() {
         .then(res => res.json())
         .then(data => {
             if (data.result) {
-                dispatch(login({ token: data.token, user: data.user }));
-                localStorage.setItem('token', data.token);
+                dispatch(login( data.user ));
+                localStorage.setItem('token', data.user.token);
                 alert("Connexion réussie !");
                 router.push('/');  // 🚀 Redirige vers l'accueil
             } else {

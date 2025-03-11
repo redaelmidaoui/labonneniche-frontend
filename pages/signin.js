@@ -30,8 +30,9 @@ function SignInPage() {
          
         .then(res => res.json())
         .then(data => {
+            console.log("Signin data :", data);
             if (data.result) {
-                dispatch(login( data.user ));
+                dispatch(login( data.newDoc ));
 
                 setFormData({ mail: '', password: '' });
                 router.push('/');

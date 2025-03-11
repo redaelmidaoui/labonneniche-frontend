@@ -21,28 +21,28 @@ const store = configureStore({
   // Pour gérer l'initialisation du store de Redux (et donc sa persistance), il faut obligatoirement
   // faire une fonction à part car l'application doit être enveloppée quant à elle dans le provider.
 
-  function ReduxInitializer(){
-    const dispatch = useDispatch();
+//   function ReduxInitializer(){
+//     const dispatch = useDispatch();
 
-        useEffect(() => {
-            const token = localStorage.getItem('token');
+//         useEffect(() => {
+//             const token = localStorage.getItem('token');
 
-            if (token) {
-                fetch(`http://localhost:3000/users/${token}`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.result) {
-                        dispatch(login({ token, user: data.user }));
-                    } else {
-                        console.log("Token invalide");
-                    }
-                })
-                .catch(() => console.log("Erreur de récupération user"));
-            }
-        }, []);
+//             if (token) {
+//                 fetch(`http://localhost:3000/users/${token}`)
+//                 .then(res => res.json())
+//                 .then(data => {
+//                     if (data.result) {
+//                         dispatch(login({ token, user: data.user }));
+//                     } else {
+//                         console.log("Token invalide");
+//                     }
+//                 })
+//                 .catch(() => console.log("Erreur de récupération user"));
+//             }
+//         }, []);
 
-        return null;
-}
+//         return null;
+// }
 
 function App({ Component, pageProps }) {
     return (
@@ -51,7 +51,6 @@ function App({ Component, pageProps }) {
                 <Head>
                     <title>la bonne niche</title>
                 </Head>
-                <ReduxInitializer />
                 <Component {...pageProps} />
             </Provider>
         </GoogleOAuthProvider>

@@ -19,10 +19,11 @@ export const userSlice = createSlice({
     initialState,
     reducers:  {
         login: (state, action) => {
-            state = action.payload;
+            console.log("reducer results :", action.payload);
+            return state = action.payload;
         },
         logout: (state) => {
-            state = initialState;
+            return state = initialState;
         },
     },
 });

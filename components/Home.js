@@ -21,7 +21,8 @@ function Home() {
   const user = useSelector((state) => state.user);
   const token = user.token;
   const router = useRouter();
-
+  console.log("user", user);
+  
   useEffect(() => {
     if (!user.token) return;
     console.log(token);

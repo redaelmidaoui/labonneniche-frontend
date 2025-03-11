@@ -26,6 +26,8 @@ export default function PostAd() {
         city: "",
         department: "",
     }));
+
+    console.log(user);
     
 
     const handleChange = (e) => {
@@ -41,7 +43,6 @@ export default function PostAd() {
         setIsEditing(false);
     };
 
-    console.log(user);
     
     const handleSubmit = () => {
         if (!user || !user._id) {
