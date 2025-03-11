@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { login } from '../reducers/users';
+import { login } from '../reducers/user';
 import Header from '../components/Header';
 import SocialLoginButtons from '../components/SocialLoginButtons';
 import styles from '../styles/Signup.module.css';
@@ -54,8 +54,8 @@ function SignUpPage() {
         .then(res => res.json())
         .then(data => {
             if (data.result) {
-                dispatch(login({ token: data.token, user: data.user })); // On récupère les données de l'utilisateur ici
-                localStorage.setItem('token', data.token); // Puis on les stock
+                console.log("insh allah");
+                dispatch(login( data.newDoc )); // On récupère les données de l'utilisateur ici
 
                 setTimeout(() => {
                     router.push('/');
@@ -79,7 +79,9 @@ function SignUpPage() {
                     },
                 });
             } else {
+                console.error(data.error);
                 alert(`Erreur : ${data.error}`);
+                
             }
         })
         .catch(err => console.error('Erreur fetch:', err));
