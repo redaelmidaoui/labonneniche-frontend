@@ -5,5 +5,11 @@
     border: 1px solid #000000;
     margin-bottom: 1%;
     border-radius: 30px;
+    cursor: pointer;
     padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.selected {
+    background-color: #d1e7fd;
 }

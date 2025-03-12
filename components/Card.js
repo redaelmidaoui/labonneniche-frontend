@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 function Card(props) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.users);
+  const user = useSelector((state) => state.user);
   const favorites = useSelector((state) => state.favorites.value);
 
   // useEffect(() => {

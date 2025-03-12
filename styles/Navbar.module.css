@@ -1,0 +1,58 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    width: 700px;
+    margin: 20px auto;
+}
+
+.divNavbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.navbarItem {
+    text-align: center;
+    cursor: pointer;
+    padding-top: 5px;
+    font-weight: bold;
+    margin-right: 70px;
+}
+
+.dropdownMenuDiv {
+    background-color: white;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    color: #cccccc;
+}
+
+.dropdownMenuDiv:hover {
+    background: #f0f0f0;
+}
+
+
+.searchButton {
+    background: #01A076;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.searchButton:hover {
+    background-color: black;
+}
+

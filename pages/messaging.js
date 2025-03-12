@@ -5,34 +5,46 @@ import styles from "../styles/Messaging.module.css";
 import Contact from "../components/Contact";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from "react-redux";
 
 function Messaging() {
     const [contactList, setContactList] = useState([]);
     const [messageList, setMessageList] = useState([]);
     const [messageText, setMessageText] = useState("");
-    const id_user = "67c6e9a3a5d14622c404a6be";
+    const [selectedContactId, setSelectedContactId] = useState(null);
+
+    const user = useSelector((state) => state.user);
+    console.log(user);
 
     // Création d'une référence pour le conteneur des messages
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        setMessageList([{id_sender:"67c6e9a3a5d14622c404a6be", content:"Hello"}, {id_sender:"other", content:"Hi"}, {id_sender:"67c6e9a3a5d14622c404a6be", content:"So, I am interested to adopt your dog"}]);
-
-        fetch(`http://localhost:3000/messaging/getMessaging/${id_user}`)
+        
+        fetch(`http://localhost:3000/messaging/getMessaging/${user._id}`)
         .then(response => response.json())
-        .then(data => {setContactList(data.messageries)});
-    }, []);
-
-    // Fonction pour faire défiler vers le bas chaque fois qu'un message est ajouté
-    useEffect(() => {
+        .then(data => {
+            setContactList(data.messageries);
+        });
+        // Fonction pour faire défiler vers le bas chaque fois qu'un message est ajouté
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [messageList]);
 
+    const contactClickHandler = (id_messaging) => {
+        setSelectedContactId(id_messaging);
+        const findMessaging = contactList.find(item => item._id === id_messaging);
+
+        if (findMessaging) {
+            setMessageList(findMessaging.messages);
+        }
+    }
+
     const contacts = contactList.map((data, key) => {
+        const isSelected = selectedContactId === data._id;
         const lastMessage = data.messages[data.messages.length - 1];
-        let date_last_message = "empty";
+        let date_last_message = "";
         if (data.messages.length !== 0) {
             date_last_message = new Date(lastMessage.date_of_dispatch);
         }
@@ -40,27 +52,33 @@ function Messaging() {
             <Contact 
                 id={data._id} 
                 key={key} 
-                id_contact={data.id_user1 !== id_user ? data.id_user1 : data.id_user2} 
-                date_last_message={date_last_message === "empty" ? date_last_message : `${date_last_message.getDate()}/${date_last_message.getMonth() + 1}/${date_last_message.getUTCFullYear()}`} 
+                contact={data.user1._id !== user._id ? data.user1 : data.user2}
+                onClick={() => contactClickHandler(data._id)}
+                isSelected={isSelected}
             />
         );
     });
 
-    const messages = messageList.map((data, key) => {
-        return (
-            <div 
-                className={styles.message} 
-                key={key} 
-                style={{ flexDirection: id_user === data.id_sender ? "row-reverse" : "row" }}
-            >
-                <p>{data.content}</p>
-            </div>
-        );
-    });
+    const messages = (messageList || []).map((data, key) => (
+        <div 
+            className={styles.message} 
+            key={key} 
+            style={{ flexDirection: user._id === data.id_editor ? "row-reverse" : "row" }}
+        >
+            <p>{data.content}</p>
+        </div>
+    ));
+    
 
     const sendHandler = () => {
         if (messageText.trim() !== "") {  // Empêcher les messages vides
-            setMessageList([...messageList, { id_sender: id_user, content: messageText }]);
+            const newMessage = { id_editor: user._id, content: messageText };
+            setMessageList([...messageList, newMessage]);
+            fetch(`http://localhost:3000/messaging/addMessage/${selectedContactId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newMessage)
+            })
             setMessageText("");  // Réinitialiser le champ de texte
         }
     };

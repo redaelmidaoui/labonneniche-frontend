@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../reducers/users';
+import { login } from '../reducers/user';
 import Header from '../components/Header';
 import SocialLoginButtons from '../components/SocialLoginButtons';
 import styles from '../styles/Signin.module.css';
@@ -30,12 +30,12 @@ function SignInPage() {
          
         .then(res => res.json())
         .then(data => {
+            console.log("Signin data :", data);
             if (data.result) {
-                dispatch(login({ token: data.token, user: data.user }));
-                localStorage.setItem('token', data.token);
+                dispatch(login( data.newDoc ));
 
                 setFormData({ mail: '', password: '' });
-                router.push('/account');
+                router.push('/');
             } else {
                 alert(`Erreur : ${data.error}`);
             }

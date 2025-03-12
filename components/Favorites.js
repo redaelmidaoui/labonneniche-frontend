@@ -9,7 +9,7 @@ import styles from '../styles/Home.module.css';
 
 const Favorites = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.users);
+  const user = useSelector((state) => state.user);
   const favorites = useSelector((state) => state.favorites.value); // Liste des favoris
 
   // useEffect(() => {

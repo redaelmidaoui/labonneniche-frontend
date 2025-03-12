@@ -1,7 +1,7 @@
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { login } from '../reducers/users';
+import { login } from '../reducers/user';
 import { useRouter } from 'next/router';
 
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
@@ -22,8 +22,8 @@ function SocialLoginButtons() {
         .then(res => res.json())
         .then(data => {
             if (data.result) {
-                dispatch(login({ token: data.token, user: data.user }));
-                localStorage.setItem('token', data.token);
+                dispatch(login( data.user ));
+                localStorage.setItem('token', data.user.token);
                 alert("Connexion réussie !");
                 router.push('/');  // 🚀 Redirige vers l'accueil
             } else {

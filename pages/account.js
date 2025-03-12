@@ -5,14 +5,14 @@ import Calendar from '../components/Calendar';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { login } from '../reducers/users';
+import { login } from '../reducers/user';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDown, faArrowDown, faPenToSquare, faSave } from '@fortawesome/free-solid-svg-icons';
 
 function AccountPage() {
     const dispatch = useDispatch();
     const router = useRouter();
-    const user = useSelector(state => state.users.user);
+    const user = useSelector(state => state.user);
     const [profileImage, setProfileImage] = useState(user?.profilePhoto || null); 
 
     useEffect(() => {
@@ -52,7 +52,7 @@ function AccountPage() {
 
             const data = await response.json();
             if (data.result) {
-                dispatch(login({ token: user.token, user: { ...user, ...editedData } }));
+                dispatch(login({ ...user, ...editedData }));
                 setIsEditing(false);
             } else {
                 console.error("Erreur lord de la mise à jour des informations du profil utilisateur");
@@ -84,7 +84,7 @@ function AccountPage() {
 
                 if (data.result) {
                     setProfileImage(data.profilePhoto); // La photo de profile est mise à jour et s'affiche
-                    dispatch(login({ token: user.token, user: { ...user, profilePhoto: data.profilePhoto } })); // La mise à jour est transmise à Redux ici
+                    dispatch(login({ ...user, profilePhoto: data.profilePhoto })); // La mise à jour est transmise à Redux ici
                     console.log("Image mise à jour :", data.profilePhoto);
                 } else {
                     console.error("Erreur lors de l'import du fichier photo");
@@ -110,7 +110,7 @@ function AccountPage() {
             const data = await response.json();
             if (data.result) {
                 setProfileImage(null);
-                dispatch(login({ token: user.token, user: { ...user, profilePhoto: '' } }));
+                dispatch(login({ ...user, profilePhoto: '' }));
             }
         } catch (error) {
             console.error("Erreur du serveur", error);
