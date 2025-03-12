@@ -157,3 +157,8 @@
 .infoIconSend.active {
     color: #01A076;
 }
+
+.date {
+    margin-left: 5px;
+    letter-spacing: 2px;
+}

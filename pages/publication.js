@@ -18,6 +18,12 @@ export default function PostAd() {
     const [city, setCity] = useState("");
     const [postalCode, setPostalCode] = useState("");
 
+    const date = new Date();
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Les mois débutent à 0
+    const year = date.getFullYear();
+
     const [isEditing, setIsEditing] = useState(false);
     const [editedUser, setEditedUser] = useState(() => ({
         lastname: user?.lastname || "",
@@ -147,8 +153,8 @@ export default function PostAd() {
 
                         <div className={styles.radioGroup}>
                             <label>Genre :</label>
-                            <label><input type="radio" name="gender" value="male" onChange={() => setGender("male")} />Mâle</label>
-                            <label><input type="radio" name="gender" value="female" onChange={() => setGender("female")} />Femelle</label>
+                            <label><input type="radio" name="gender" value="mâle" onChange={() => setGender("mâle")} />Mâle</label>
+                            <label><input type="radio" name="gender" value="femelle" onChange={() => setGender("femelle")} />Femelle</label>
                             <label><input type="radio" name="gender" value="les deux" onChange={() => setGender("les deux")} />Les deux (en cas de portée)</label>
                         </div>
                     </div>
@@ -199,7 +205,7 @@ export default function PostAd() {
                         name="department" 
                         value={editedUser.department} 
                         onChange={handleChange} /> : editedUser.department || "À compléter"}</p>
-                        <p className={styles.dataInfo}><strong>Posté le :</strong> {ad?.publicationDate ? new Date(ad.publicationDate).toLocaleString() : "Date inconnue"} </p>
+                        <p className={styles.dataInfo}><strong>Posté le :</strong><span className={styles.date}>{day}/{month}/{year}</span></p>
                         <div className={styles.finalApprouvment}>
                         {isEditing ? (
                             <FontAwesomeIcon icon={faSave} onClick={handleSaveClick} />

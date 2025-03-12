@@ -2,19 +2,16 @@ import styles from '../styles/Home.module.css';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons'; 
 import Link from 'next/link';
 import Card from './Card';
 import Header from './Header';
 import Footer from './Footer';
+import Navbar from './Navbar';
 import { setFavorites } from "../reducers/favorites";
 
 function Home() {
-  const [type, setType] = useState("");
-  const [age, setAge] = useState("");
-  const [genre, setGenre] = useState("");
   const [adsData, setAdsData] = useState([]);
+  const [ads, setAds] = useState([]);
 
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.value);
@@ -22,6 +19,22 @@ function Home() {
   const token = user.token;
   const router = useRouter();
   console.log("user", user);
+
+  const handleFilter = (filteredAds) => {
+    console.log("Données filtrées reçues dans Home.js :", filteredAds);
+    setAdsData(filteredAds);
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:3000/ads")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Toutes les annonces récupérées :", data);
+        setAds(data); // Toutes les annonces sont stockées 
+        setAdsData(data); // adsData est initialisé pour l'affichage
+      });
+
+  }, []);
   
   useEffect(() => {
     if (!user.token) return;
@@ -37,17 +50,8 @@ function Home() {
       .catch((error) => console.error("Erreur récupération favoris", error));
   }, [user.token]); // Se déclenche lorsque le token change
 
-
-  useEffect(() => {
-    fetch('http://localhost:3000/ads')
-      .then(response => response.json())
-      .then(data => {
-        setAdsData(data.reverse());
-      });
-  }, []);
-
   const cards = adsData.map((card) => {
-    const isFav= favorites.includes(card._id)
+    const isFav = favorites.includes(card._id)
     return <Card 
       key={card._id} 
       id={card._id}
@@ -62,11 +66,11 @@ function Home() {
       isFav = {isFav} />
   });
 
-  
   return (
     <div className={styles.container}>
       <Header />
-      <div className={styles.searchBar}>
+      <Navbar ads={ads} setFilteredAds={setAdsData} />
+      {/* <div className={styles.searchBar}>
         <div className={styles.type}>
           <p className={styles.h4}>Type</p>
           <select
@@ -111,7 +115,7 @@ function Home() {
             <FontAwesomeIcon icon={faSearch} /> 
             </button>
        </div>
-      </div>
+      </div> */}
 
       <div className={styles.divNav}>
         <Link href="/"><span className={styles.link}>Annonces</span></Link>
@@ -119,11 +123,26 @@ function Home() {
       </div>
 
       <div className={styles.divAds}>
-        {cards}
+      {adsData.length > 0 ? (
+       adsData.map((ad) => (
+        <Card 
+          key={ad._id}
+          type={ad.sort}
+          age={ad.age}
+          genre={ad.gender}
+          picture={ad.pictures[0]}
+          description={ad.description}
+          ville={ad.city}
+          codePostale={ad.postalCode}
+        />
+      ))
+    ) : (
+      <p>Aucune annonce trouvée.</p>
+    )}
       </div>
       <Footer />
     </div>
   );
-}
+};
 
 export default Home;
