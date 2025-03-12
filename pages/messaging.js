@@ -44,7 +44,7 @@ function Messaging() {
     const contacts = contactList.map((data, key) => {
         const isSelected = selectedContactId === data._id;
         const lastMessage = data.messages[data.messages.length - 1];
-        let date_last_message = "empty";
+        let date_last_message = "";
         if (data.messages.length !== 0) {
             date_last_message = new Date(lastMessage.date_of_dispatch);
         }

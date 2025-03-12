@@ -17,11 +17,11 @@ function LoginReminderPopup({ isLoggedIn }) {
             <button className={styles.loginButton} onClick={goToLogin}>
                 SE CONNECTER
             </button>
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
                 icon={faArrowRightToArc}
                 className={styles.loginIcon}
                 onClick={goToLogin}
-            />    
+            />     */}
         </div>
     );
 };
