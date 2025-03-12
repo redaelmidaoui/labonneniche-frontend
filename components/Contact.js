@@ -6,7 +6,6 @@ function Contact(props) {
     return (
         <div className={`${styles.contact} ${props.isSelected ? styles.selected : ""}`} 
             onClick={props.onClick} 
-            style={{ cursor: "pointer", padding: "10px", border: "1px solid black" }} 
             tabIndex={0} 
             role="button"
         >

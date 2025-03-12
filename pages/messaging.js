@@ -14,6 +14,7 @@ function Messaging() {
     const [selectedContactId, setSelectedContactId] = useState(null);
 
     const user = useSelector((state) => state.user);
+    console.log(user);
 
     // Création d'une référence pour le conteneur des messages
     const messagesEndRef = useRef(null);
@@ -25,10 +26,7 @@ function Messaging() {
         .then(data => {
             setContactList(data.messageries);
         });
-    }, []);
-
-    // Fonction pour faire défiler vers le bas chaque fois qu'un message est ajouté
-    useEffect(() => {
+        // Fonction pour faire défiler vers le bas chaque fois qu'un message est ajouté
         if (messagesEndRef.current) {
             messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
         }
@@ -37,7 +35,7 @@ function Messaging() {
     const contactClickHandler = (id_messaging) => {
         setSelectedContactId(id_messaging);
         const findMessaging = contactList.find(item => item._id === id_messaging);
-        if (!findMessaging) return;
+
         if (findMessaging) {
             setMessageList(findMessaging.messages);
         }
@@ -74,7 +72,13 @@ function Messaging() {
 
     const sendHandler = () => {
         if (messageText.trim() !== "") {  // Empêcher les messages vides
-            setMessageList([...messageList, { id_editor: user._id, content: messageText }]);
+            const newMessage = { id_editor: user._id, content: messageText };
+            setMessageList([...messageList, newMessage]);
+            fetch(`http://localhost:3000/messaging/addMessage/${selectedContactId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newMessage)
+            })
             setMessageText("");  // Réinitialiser le champ de texte
         }
     };
