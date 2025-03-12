@@ -1,0 +1,164 @@
+
+.divLeft{
+    width: 60%;
+    height: 100%;
+    padding-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: row;
+    height: 100%; 
+}
+
+.divNav{
+    display: flex;
+    width: 100vw;
+    height: 10%;
+    border-bottom: 1px solid rgb(123, 120, 120);
+    justify-content: space-evenly;
+    padding-bottom: 1%;
+  }
+  
+  .link{
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 1%;
+  }
+  
+  .img1{
+    width: 80%;
+    border-top-left-radius: 30px; /* Arrondi en haut à gauche */
+    border-bottom-left-radius: 30px; /* Arrondi en bas à gauche */
+    height: 340px;
+  }
+
+  .imgBlock1{
+    display: flex;
+    width: 80%;
+  }
+
+  .imgBlock2{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+.img2{
+    width: 60%;
+    height: 50%;
+    border-top-right-radius: 30px; /* Arrondi en haut à droite */
+    padding-left: 5%; 
+}
+
+.img3{
+    width: 60%;
+    height: 50%;
+    border-bottom-right-radius: 30px; /* Arrondi en bas à droite */
+    padding-left: 5%; 
+    padding-top: 5%;
+}
+
+.divRight{
+    width: 30%;
+    height: 100vh;
+    padding-top: 5%;
+}
+
+.infoCard{
+    width: 60%;
+    height: 60%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10%;
+}
+
+.name{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5%;
+}
+
+.h3{
+    margin: 0;
+    margin-top: 10%;
+}
+
+
+
+.button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    background-color: #01A076;
+    border: none;
+    border-radius: 30px;
+    border: 1px solid #01A076;
+    cursor: pointer;
+    box-shadow: Opx 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.divBtn{
+    margin-top: 10%;
+    margin-left: -12%;
+    width: 100%;
+}
+
+.searchBar{
+    width: 60%;
+    height: 6%;
+    padding-bottom: 6px;
+    background-color: white;
+    border-radius: 30px / 25px;
+    border: 1px solid rgb(199, 197, 197);
+    display: flex;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 5%;
+  }
+
+  
+.type{
+    width: 33%;
+    border-right: 1px solid rgb(182, 181, 181);
+    height: 90%;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .age{
+    width: 34%;
+    border-right: 1px solid rgb(182, 181, 181);
+    height: 90%;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  
+  .genre{
+    width: 33%;
+    height: 90%;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description{
+    margin-top: 5%;
+  }

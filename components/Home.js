@@ -44,10 +44,10 @@ function Home() {
       });
   }, []);
 
-  const cards = adsData.map((card) => {
+  const cards = adsData.map((card, i) => {
     const isFav= favorites.includes(card._id)
     return <Card 
-      key={card._id} 
+      key={i} 
       id={card._id}
       picture={card.pictures[0]} 
       type={card.sort} 

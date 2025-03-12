@@ -5,7 +5,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFavorites } from "../reducers/favorites";
-import { addToken } from "../reducers/user";
+import Link from 'next/link';
 
 function Card(props) {
   const dispatch = useDispatch();
@@ -48,6 +48,7 @@ function Card(props) {
   return (
     <div className={styles.divCard}>
       <div className={styles.card}>
+      <Link href={`/adDetails/${props.id}`} >
         <div className={styles.image}>
           <Image
             src={props.picture}
@@ -59,22 +60,27 @@ function Card(props) {
             }}
           ></Image>
         </div>
+        </Link>
         <div className={styles.heart}>
           <FontAwesomeIcon
             icon={faHeart}
             onClick={() => handleFavoriteClick()}
             style={iconStyle}
+            size="2x"
           />
         </div>
-        <div className={styles.infosCard}>
-          <p className={styles.type}>Type: {props.type}</p>
-          <p className={styles.type}>Âge: {props.age}</p>
-          <p className={styles.type}>Genre: {props.genre}</p>
-          <p>Description: {props.description}</p>
-          <div className={styles.adresse}>
-            {props.ville} {props.codePostale}
+      <Link href={`/adDetails/${props.id}`} >
+        
+          <div className={styles.infosCard}>
+            <p className={styles.type}>Type: {props.type}</p>
+            <p className={styles.type}>Âge: {props.age}</p>
+            <p className={styles.type}>Genre: {props.genre}</p>
+            <p>Description: {props.description}</p>
+            <div className={styles.adresse}>
+              {props.ville} {props.codePostale}
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
