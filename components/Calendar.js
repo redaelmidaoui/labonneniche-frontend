@@ -13,7 +13,7 @@ function Calendar({ userToken }) {
 
     // Charge les données du calendrier depuis le backend quand le composant s'affiche
     useEffect(() => {
-        fetch(`http://localhost:3000/users/calendar/${userToken}`)
+        fetch(`https://labonneniche-backend.vercel.app/users/calendar/${userToken}`)
             .then(res => res.json())
             .then(data => {
                 if (data.result) {
@@ -63,7 +63,7 @@ function Calendar({ userToken }) {
         setSelectedDates({ unavailable: newUnavailable, appointments: newAppointments });
     
         // Envoi des modifications au backend
-        fetch('http://localhost:3000/users/update-calendar', {
+        fetch('https://labonneniche-backend.vercel.app/users/update-calendar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: userToken, unavailable: newUnavailable, appointments: newAppointments })

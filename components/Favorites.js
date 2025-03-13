@@ -15,7 +15,7 @@ const Favorites = () => {
   useEffect(() => {
     if (user.token) {
       
-      fetch(`http://localhost:3000/users/${user.token}/favorites`)
+      fetch(`https://labonneniche-backend.vercel.app/users/${user.token}/favorites`)
         .then((response) => response.json())
         .then((data) => {
           console.log("Données reçues :", data);

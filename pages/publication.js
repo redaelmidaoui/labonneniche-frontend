@@ -96,7 +96,7 @@ export default function PostAd() {
         console.log("Utilisateur :", user);
         console.log("Données envoyées :", adData);
 
-        fetch("http://localhost:3000/ads", {
+        fetch("https://labonneniche-backend.vercel.app/ads", {
             method: 'POST',
             headers: { "Content-Type": "application/json",
             "Authorization": `Bearer ${user.token}`

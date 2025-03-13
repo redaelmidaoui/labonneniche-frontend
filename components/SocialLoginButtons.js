@@ -19,7 +19,7 @@ function SocialLoginButtons() {
     const handleLogin = (credentialResponse) => {
         const userData = jwtDecode(credentialResponse.credential); // Décodage du token JWT pour récupérer les infos de l'utilisateur.
     
-        fetch('http://localhost:3000/users/google-login', {
+        fetch('https://labonneniche-backend.vercel.app/users/google-login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: userData.email, name: userData.name })

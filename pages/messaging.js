@@ -23,7 +23,7 @@ function Messaging() {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/messaging/getMessaging/${user._id}`)
+        fetch(`https://labonneniche-backend.vercel.app/messaging/getMessaging/${user._id}`)
             .then(response => response.json())
             .then(data => {
                 setContactList(data.messageries);
@@ -115,7 +115,7 @@ function Messaging() {
         if (selectedContactId) {
             const newMessage = { id_editor: user._id, content: messageText };
     
-            fetch(`http://localhost:3000/messaging/addMessage/${selectedContactId}`, {
+            fetch(`https://labonneniche-backend.vercel.app/messaging/addMessage/${selectedContactId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newMessage)

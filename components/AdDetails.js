@@ -17,7 +17,7 @@ const AdDetails = () => {
   useEffect(() => {
     if (!id) return; // Ne rien faire si l'ID est undefined
 
-    fetch(`http://localhost:3000/ads/${id}`)
+    fetch(`https://labonneniche-backend.vercel.app/ads/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Annonce non trouvée");
@@ -36,7 +36,7 @@ const AdDetails = () => {
       return;
     }
 
-    fetch(`http://localhost:3000/messaging`, {
+    fetch(`https://labonneniche-backend.vercel.app/messaging`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id_user1: user._id, id_user2: adData.author._id })

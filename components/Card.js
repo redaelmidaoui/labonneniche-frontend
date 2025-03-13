@@ -21,7 +21,7 @@ function Card(props) {
       : [...favorites, props.id];
 
     //  Route pour mettre à jour les favoris
-    fetch("http://localhost:3000/users/addFavorites", {
+    fetch("https://labonneniche-backend.vercel.app/users/addFavorites", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -56,7 +56,7 @@ function AccountPage() {
     // Sauvegarde les modifications du profil utilisateur
     const handleSaveChanges = async () => {
         try {
-            const response = await fetch('http://localhost:3000/users/update-profile', {
+            const response = await fetch('https://labonneniche-backend.vercel.app/users/update-profile', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token:localStorage.getItem('token'), ...editedData }),
@@ -87,7 +87,7 @@ function AccountPage() {
             console.log("Envoi de l'image :", file.name);
 
             try {
-                const response = await fetch('http://localhost:3000/users/upload-profile-photo', {
+                const response = await fetch('https://labonneniche-backend.vercel.app/users/upload-profile-photo', {
                     method: 'POST',
                     body: formData,
                 });
@@ -116,7 +116,7 @@ function AccountPage() {
     // Suppression de la photo de profil
     const handleRemovePhoto = async () => {
         try {
-            const response = await fetch('http://localhost:3000/users/delete-profile-photo', {
+            const response = await fetch('https://labonneniche-backend.vercel.app/users/delete-profile-photo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token: localStorage.getItem('token') }),

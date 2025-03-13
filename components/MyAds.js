@@ -15,7 +15,7 @@ function MyAds() {
     useEffect(() => {
         if (token) {
           // Récupération de l'ID de l'utilisateur
-          fetch(`http://localhost:3000/users/${token}`)
+          fetch(`https://labonneniche-backend.vercel.app/users/${token}`)
             .then((response) => response.json())
             .then((data) => {
               if (data.result) {
@@ -29,7 +29,7 @@ function MyAds() {
       useEffect(() => {
         if (id) {
           // Une fois que l'ID est récupéré, on peut récupérer les annonces
-          fetch(`http://localhost:3000/ads/myAds/${id}`)
+          fetch(`https://labonneniche-backend.vercel.app/ads/myAds/${id}`)
             .then((response) => response.json())
             .then((data) => {
               console.log("Mes annonces récupérées :", data);
