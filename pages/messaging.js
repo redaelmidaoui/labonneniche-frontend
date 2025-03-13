@@ -23,11 +23,13 @@ function Messaging() {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
+        console.log("User ID:", user._id);
         fetch(`https://labonneniche-backend.vercel.app/messaging/getMessaging/${user._id}`)
             .then(response => response.json())
             .then(data => {
+                if (data.messageries) {
                 setContactList(data.messageries);
-
+                }
                 // Si un ID est passé dans l'URL, sélectionner directement la conversation
                 if (id) {
                     const findMessaging = data.messageries.find(item => item._id === id);
@@ -58,7 +60,8 @@ function Messaging() {
         }
     }
 
-    const contacts = contactList.map((data, key) => {
+    console.log("Contact list:", contactList);
+    const contacts = contactList.length > 0 ? (contactList.map((data, key) => {
         const isSelected = selectedContactId === data._id;
         const lastMessage = data.messages[data.messages.length - 1];
         let lastMessageDate = "";
@@ -85,7 +88,8 @@ function Messaging() {
                 lastMessageDate={lastMessageDate}
             />
         );
-    });
+    })
+    ) : <p>Aucun contact</p>;
 
     const messages = (messageList || []).map((data, key) => {
         console.log("Message data:", data);
