@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorites, setFavorites } from "../reducers/favorites";
-import { addToken } from "../reducers/user";
 import Link from 'next/link';
 import Card from "./Card";
 import Header from './Header';

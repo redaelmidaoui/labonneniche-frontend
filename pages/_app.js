@@ -10,11 +10,13 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import favorites from '../reducers/favorites';
 import user from '../reducers/user';
+import adDetails from '../reducers/adDetails';
 
 const store = configureStore({
     reducer: {
         favorites,
         user,
+        adDetails,
      },
   });
 
