@@ -48,13 +48,13 @@ function Home() {
       .catch((error) => console.error("Erreur récupération favoris", error));
   }, [user.token]); // Se déclenche lorsque le token change
 
-   const handleFavorites = () => {
-     if (!user.token) {
-       router.push("/login"); // Redirige vers la page de connexion si non connecté
-     } else {
-       router.push("/favorites"); // Redirige vers la page de publication si connecté
-     }
-   }
+  const handleFavorites = () => {
+    if (!user.token) {
+      router.push("/login");
+    } else {
+      router.push("/favorites");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -62,11 +62,11 @@ function Home() {
       <Navbar ads={ads} setFilteredAds={setAdsData} />
       <div className={styles.divNav}>
         <Link href="/">
-          <span onClick={handleFavorites} className={styles.link}>Annonces</span>
+          <span className={styles.link}>Annonces</span>
         </Link>
-        <Link href="/favorites">
-          <span className={styles.link}>Favoris</span>
-        </Link>
+        <span onClick={handleFavorites} className={styles.link}>
+          Favoris
+        </span>
       </div>
 
       <hr className={styles.line} />

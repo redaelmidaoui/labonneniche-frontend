@@ -36,6 +36,8 @@ const Favorites = () => {
         <Link href="/"><span className={styles.link}>Annonces</span></Link>
         <Link href="/favorites"><span className={styles.link}>Favoris</span></Link>
       </div>
+      
+      <hr className={styles.line} />
 
       <h1>Mes Favoris</h1>
       <div className={styles.divAds}>
