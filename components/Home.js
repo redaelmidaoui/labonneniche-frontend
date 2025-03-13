@@ -50,7 +50,7 @@ function Home() {
       .catch((error) => console.error("Erreur récupération favoris", error));
   }, [user.token]); // Se déclenche lorsque le token change
 
-  const cards = adsData.map((card) => {
+  const cards = adsData.map((card, i) => {
     const isFav = favorites.includes(card._id)
     return <Card 
       key={i} 
