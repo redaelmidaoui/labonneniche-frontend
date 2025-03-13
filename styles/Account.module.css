@@ -1,14 +1,22 @@
 .accountContainer {
-    padding: 20px;
+    padding-top: 20px;
     font-family: Arial, sans-serif;
-    margin-left: 60px;
     height: 100vh;
+}
+
+.profileName {
+    padding-left: 60px;
+}
+
+.title {
+    padding-left: 60px;
 }
 
 .reminderText {
     margin-bottom: 20px;
     font-size: 10px;
-    color: #555;
+    color: black;
+    padding-left: 60px;
 }
 
 .profileSection {
@@ -22,6 +30,7 @@
 
 .profileInfo {
     width: 30%;
+    margin-left: 60px;
 }
 
 .mention{
@@ -89,6 +98,10 @@
     border-radius: 10px;
     text-align: center;
     margin-right: 60px;
+}
+
+.margin {
+    margin-left: 60px;
 }
 
 .actions {
@@ -170,6 +183,7 @@
     gap: 8px;
     font-size: 10px;
     box-shadow: 0px 1px 2px Rgba(0, 0, 0, 0.4);
+    margin-left: 60px;
 }
 
 .editButton:hover {
@@ -234,3 +248,14 @@
 .buttonRightPublication:hover {
     transform: scale(1.05);
 }
+
+.line {
+    width: 100%;
+    box-shadow: 0px 0px 0.4px rgba(0, 0, 0, 0.3);
+    margin: 10px 0px 10px 0px;
+    opacity: 0.5;
+}
+
+
+
+

@@ -12,6 +12,7 @@ const AdDetails = () => {
   const { id } = router.query;
   const dispatch = useDispatch();
   const adData = useSelector((state) => state.adDetails.value);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     if (!id) return; // Ne rien faire si l'ID est undefined
@@ -24,14 +25,29 @@ const AdDetails = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Données reçues :", data);
         dispatch(addData(data)); // Stockage des données dans Redux
-        console.log("Données stockées dans Redux :", data);
       })
       .catch((error) => console.error("Erreur :", error.message));
   }, [id]);
 
-  console.log("adData actuel :", adData);
+  const sendMessageHandler = () => {
+    if (!user.token) {
+      alert("Veuillez vous connecter pour envoyer un message.");
+      return;
+    }
+
+    fetch(`http://localhost:3000/messaging`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_user1: user._id, id_user2: adData.author._id })
+    })
+    .then(response => response.json()) // Récupérer la réponse
+    .then(data => {
+      // Rediriger vers la page de messagerie en passant l'ID de la nouvelle conversation
+      router.push(`/messaging?id=${data._id}`);
+    })
+    .catch(error => console.error("Erreur lors de la création de la messagerie :", error));
+  };
 
   return (
     <div className={styles.container}>
@@ -101,7 +117,11 @@ const AdDetails = () => {
             </div>
             <div className={styles.divBtn}>
               <Link href="/messaging">
-                <button className={styles.button}>ENVOYER UN MESSAGE</button>
+                <button 
+                  className={styles.button} 
+                  onClick={sendMessageHandler} 
+                  disabled={!user.token} // Disable button if user is not logged in
+                >ENVOYER UN MESSAGE</button>
               </Link>
             </div>
             

@@ -4,8 +4,8 @@ import Footer from '../components/Footer';
 import Calendar from '../components/Calendar';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
-import { login } from '../reducers/user';
+import { useRouter } from 'next/router'; // Importation du hook de navigation de Next.js
+import { login } from '../reducers/user'; // Importation de l'action Redux pour mettre à jour l'utilisateur
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { faCircleDown, faArrowDown, faPenToSquare, faSave } from '@fortawesome/free-solid-svg-icons';
@@ -13,13 +13,20 @@ import { faCircleDown, faArrowDown, faPenToSquare, faSave } from '@fortawesome/f
 function AccountPage() {
     const dispatch = useDispatch();
     const router = useRouter();
-    const user = useSelector(state => state.user);
-    const [profileImage, setProfileImage] = useState(user?.profilePhoto || null); 
+    const user = useSelector(state => state.user); // Récupération des informations utilisateur depuis Redux
+    const [profileImage, setProfileImage] = useState(user?.profilePhoto || null); // État pour stocker la photo de profil
 
+    function capitalize(str) {
+        return str ? str.trim().charAt(0).toUpperCase() + str.trim().slice(1).toLowerCase() : "";
+    }
+
+    // Met à jour la photo de profil lorsqu'elle change dans Redux
     useEffect(() => {
+        console.log("User dans Redux après mise à jour :", user);
         setProfileImage(user?.profilePhoto || null);
     }, [user?.profilePhoto]);
 
+    // État pour gérer l'édition du profil
     const [isEditing, setIsEditing] = useState(false);
     const [editedData, setEditedData] = useState({
         firstname: user?.firstname || '',
@@ -30,19 +37,23 @@ function AccountPage() {
         mail: user?.mail || '',
     });
 
+    // Active le mode édition
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
+    // Met à jour les informations saisies par l'utilisateur
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditedData({ ...editedData, [name]: value });
     };
 
+    // Redirige vers la page de publication
     const goToPublication = () => {
         router.push('/publication');
     };
 
+    // Sauvegarde les modifications du profil utilisateur
     const handleSaveChanges = async () => {
         try {
             const response = await fetch('http://localhost:3000/users/update-profile', {
@@ -63,6 +74,7 @@ function AccountPage() {
         }
     };
 
+    // Gestion du glisser-déposer de la photo de profil
     const handleDrop = async (event) => {
         event.preventDefault();
         const file = event.dataTransfer.files[0];
@@ -96,10 +108,12 @@ function AccountPage() {
         }
     };
 
+    // Permet le glisser-déposer sans déclencher d'autres événements
     const handleDragOver = (event) => {
         event.preventDefault();
     };
 
+    // Suppression de la photo de profil
     const handleRemovePhoto = async () => {
         try {
             const response = await fetch('http://localhost:3000/users/delete-profile-photo', {
@@ -126,9 +140,11 @@ function AccountPage() {
         <div>
             <Header />
             <div className={styles.accountContainer}>
-                <h1>Bienvenue {user.firstname} !</h1>
+                <h1 className={styles.title}>Bienvenue {capitalize(user.firstname)} !</h1>
                 <p className={styles.reminderText}>Pensez à mettre vos informations personnelles 
                     à jour afin de faciliter le bon fonctionnement de la plateforme.</p>
+
+                    <hr className={styles.line}/>
 
                     <div className={styles.profileSection}>
                         <div className={styles.profileInfo}>
@@ -162,8 +178,8 @@ function AccountPage() {
                                 </>
                             ) : (
                                 <>
-                                    <p>{user.firstname}</p>
-                                    <p>{user.lastname}</p>
+                                    <p>{capitalize(user.firstname)}</p>
+                                    <p>{capitalize(user.lastname)}</p>
                                     <p>{user.gender}</p>
                                     <p>{user.adresse}</p>
                                     <p>{user.phoneNumber}</p>
@@ -204,7 +220,7 @@ function AccountPage() {
                     </div>
 
                     <div className={styles.actions}>
-                        <div>
+                        <div className={styles.margin}>
                             <Link href="/myAds"><button className={styles.button}><FontAwesomeIcon icon={faArrowDown} className={styles.buttonIcon}/>Voir la liste<br></br>de vos annonces</button></Link>
                         </div>
                         <div>

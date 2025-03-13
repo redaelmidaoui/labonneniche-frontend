@@ -5,21 +5,26 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from "react";
 
 const Navbar = ({ ads, setFilteredAds }) => {
+    // États pour les filtres sélectionnés
     const [type, setType] = useState("");
     const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
 
+    // Fonction de filtrage des annonces en fonction des critères sélectionnés
     const handleFilter = () => {
         console.log("handleFilter exécuté !");
         console.log("Annonces disponibles avant filtrage :", ads);
 
+        // Vérifie que ads est bien défini et qu'il s'agit d'un tableau
         if (!ads || !Array.isArray(ads)) {
             console.error("Erreur : ads est undefined ou n'est pas un tableau !");
             return;
         }
         
+        // Copie du tableau original
         let filteredAds = [...ads];
 
+        // Applique les filtres successivement
         if (type) filteredAds = filteredAds.filter(ad => ad.sort === type);
         console.log(`Filtre type (${type}) appliqué :`, filteredAds);
         if (age) filteredAds = filteredAds.filter(ad => ad.age === age);
@@ -29,11 +34,13 @@ const Navbar = ({ ads, setFilteredAds }) => {
 
         console.log("Annonces après filtrage :", filteredAds);
 
+        // Mise à jour des annonces filtrées dans le state du parent
         setFilteredAds(filteredAds);
         console.log("Annonces après filtrage envoyées à Home.js :", filteredAds);
 
     };
 
+    // Exécute le filtrage automatiquement lorsqu'un filtre change
     useEffect(() =>{
         if (ads && ads.length > 0) {
             handleFilter();
@@ -69,9 +76,7 @@ const Navbar = ({ ads, setFilteredAds }) => {
             </div>
             <button className={styles.searchButton} onClick={handleFilter}>
             <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
-            </button>
-
-            
+            </button>           
         </div>
     );
 };

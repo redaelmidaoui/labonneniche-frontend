@@ -1,62 +1,55 @@
-import '../styles/globals.css';
-import Head from "next/head";
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import '../styles/globals.css'; // Importation des styles globaux pour l'application
+import Head from "next/head"; // Gestion des balises <head> (ex: titre de la page, meta tags...)
+
+// Importation des outils de persistance pour Redux
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import storage from 'redux-persist/lib/storage';
+
+// Importation du provider pour l'authentification via Google
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-// redux imports
+// Importation des outils Redux
 import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+// Importation des reducers (états globaux gérés par Redux)
 import favorites from '../reducers/favorites';
 import user from '../reducers/user';
 import adDetails from '../reducers/adDetails';
 
-const store = configureStore({
-    reducer: {
-        favorites,
-        user,
-        adDetails,
-     },
-  });
+// Configuration de Redux Persist pour stocker l'état global dans le localStorage
+const persistConfig = { key: 'laBonneNiche', storage };
 
-  // Pour gérer l'initialisation du store de Redux (et donc sa persistance), il faut obligatoirement
-  // faire une fonction à part car l'application doit être enveloppée quant à elle dans le provider.
+// Combinaison des reducers pour créer un reducer global
+const rootReducer = combineReducers({ favorites, user, adDetails });
 
-//   function ReduxInitializer(){
-//     const dispatch = useDispatch();
+// Création d'un reducer persistant à partir de la configuration
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-//         useEffect(() => {
-//             const token = localStorage.getItem('token');
+// Création du store Redux en utilisant le reducer persistant
+const store = configureStore({ reducer: persistedReducer });
 
-//             if (token) {
-//                 fetch(`http://localhost:3000/users/${token}`)
-//                 .then(res => res.json())
-//                 .then(data => {
-//                     if (data.result) {
-//                         dispatch(login({ token, user: data.user }));
-//                     } else {
-//                         console.log("Token invalide");
-//                     }
-//                 })
-//                 .catch(() => console.log("Erreur de récupération user"));
-//             }
-//         }, []);
-
-//         return null;
-// }
+// Création du persistor pour gérer la persistance des données
+const persistor = persistStore(store);
 
 function App({ Component, pageProps }) {
     return (
+        // Fournit le contexte d'authentification Google à l'application
         <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}>
+            {/* Fournit le store Redux à l'application */}
             <Provider store={store}>
-                <Head>
-                    <title>la bonne niche</title>
-                </Head>
-                <Component {...pageProps} />
+                {/* Assure la récupération des données persistées avant d'afficher l'application */}
+                <PersistGate persistor={persistor} loading={null}>
+                    <Head>
+                        <title>la bonne niche</title>
+                    </Head>
+                    {/* Rendu dynamique des différentes pages de l'application */}
+                    <Component {...pageProps} />
+                </PersistGate>
             </Provider>
         </GoogleOAuthProvider>
-  );
+    );
 }
 
 export default App;

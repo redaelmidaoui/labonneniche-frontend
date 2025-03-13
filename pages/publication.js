@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -7,7 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleDown, faPenToSquare, faSave, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 export default function PostAd() {
+    // Récupération des informations de l'utilisateur depuis Redux
     const user = useSelector((state) => state.user);
+
+    // États pour la gestion des informations de l'annonce
     const [ad, setAd] = useState(null);
     const [images, setImages] = useState([null, null, null]);
     const [animalType, setAnimalType] = useState("");
@@ -17,45 +21,64 @@ export default function PostAd() {
     const [number, setNumber] = useState(1);
     const [city, setCity] = useState("");
     const [postalCode, setPostalCode] = useState("");
-
+    const [popup, setPopup] = useState({ show: false, message: "", success: false });
+    const router = useRouter();
+    
+    // Gestion de la date actuelle
     const date = new Date();
-
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Les mois débutent à 0
     const year = date.getFullYear();
 
+    function capitalize(str) {
+        return str ? str.trim().charAt(0).toUpperCase() + str.trim().slice(1).toLowerCase() : "";
+    }
+
+    // Gestion de l'édition des informations utilisateur
     const [isEditing, setIsEditing] = useState(false);
     const [editedUser, setEditedUser] = useState(() => ({
-        lastname: user?.lastname || "",
-        firstname: user?.firstname || "",
+        lastname: capitalize(user?.lastname || ""),
+        firstname: capitalize(user?.firstname || ""),
         mail: user?.mail || "",
         city: "",
         department: "",
     }));
 
-    console.log(user);
-    
+    // Fonction d'affichage de la popup de confirmation ou d'erreur
+    const showPopup = (message, success) => {
+        setPopup({ show: true, message, success });
+        setTimeout(() => {
+            setPopup({ show: false, message: "", success: false });
+            if (success) {
+                router.push("/account");
+            }
+        }, 3000);
+    };
 
+   // Mise à jour des champs utilisateur en mode édition 
     const handleChange = (e) => {
         setEditedUser({ ...editedUser, [e.target.name]: e.target.value });
     };
 
+    // Activation du mode édition
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
+    // Sauvegarde des informations utilisateur après modification
     const handleSaveClick = () => {
         console.log("Données sauvegardées :", editedUser);
         setIsEditing(false);
     };
 
-    
+    // Soumission de l'annonce
     const handleSubmit = () => {
         if (!user || !user._id) {
             console.error("Utilisateur non connecté !");
             return;
         }
 
+        // Construction de l'objet de l'annonce
         const adData = {
             token : user.token,
             publicationDate: new Date(),
@@ -83,14 +106,15 @@ export default function PostAd() {
         .then(response => response.json())
         .then(data => {
             if (data && data.data) {
-                console.log("Annonce enregistrée avec succès :", data.data);
+                showPopup("Annonce publiée avec succès !", true);
             } else {
-                console.error("Erreur lors de l'enregistrement :", data.message);
+                showPopup("Erreur lors de la publication", false);
             }
         })
         .catch(error => console.error("Erreur du serveur :", error));
     };
 
+    // Gestion du glisser-déposer des images
     const handleDrop = (event, index) => {
         event.preventDefault();
         const file = event.dataTransfer.files[0];
@@ -225,6 +249,16 @@ export default function PostAd() {
                 </div>
             </div>
             <Footer />
+            {popup.show && (
+                <div className={styles.popupBackground}>
+                    <div className={styles.popup}>
+                        <p>{popup.message}</p>
+                        <button onClick={() => setPopup({ show: false, message: "", success: false })}>
+                            OK
+                        </button>
+                    </div>
+                </div>
+            )}
         </>
     );
 }
