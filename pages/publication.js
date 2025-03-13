@@ -135,6 +135,7 @@ export default function PostAd() {
     return (
         <>
         <Header />
+        <hr className={styles.line}/>
             <div className={styles.container}>
 
                 <div className={styles.leftSection}>
