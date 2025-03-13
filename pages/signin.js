@@ -22,7 +22,7 @@ function SignInPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/users/signin', { 
+        fetch('https://labonneniche-backend.vercel.app/users/signin', { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
@@ -46,7 +46,6 @@ function SignInPage() {
 
     return (
         <div className={styles.signinContainer}>
-            <Header />
             <SocialLoginButtons />
             
             <hr className={styles.line}/>

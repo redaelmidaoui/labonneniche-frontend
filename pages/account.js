@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router'; // Importation du hook de navigation de Next.js
 import { login } from '../reducers/user'; // Importation de l'action Redux pour mettre à jour l'utilisateur
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import { faCircleDown, faArrowDown, faPenToSquare, faSave } from '@fortawesome/free-solid-svg-icons';
 
 function AccountPage() {
@@ -55,7 +56,7 @@ function AccountPage() {
     // Sauvegarde les modifications du profil utilisateur
     const handleSaveChanges = async () => {
         try {
-            const response = await fetch('http://localhost:3000/users/update-profile', {
+            const response = await fetch('https://labonneniche-backend.vercel.app/users/update-profile', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token:localStorage.getItem('token'), ...editedData }),
@@ -86,7 +87,7 @@ function AccountPage() {
             console.log("Envoi de l'image :", file.name);
 
             try {
-                const response = await fetch('http://localhost:3000/users/upload-profile-photo', {
+                const response = await fetch('https://labonneniche-backend.vercel.app/users/upload-profile-photo', {
                     method: 'POST',
                     body: formData,
                 });
@@ -115,7 +116,7 @@ function AccountPage() {
     // Suppression de la photo de profil
     const handleRemovePhoto = async () => {
         try {
-            const response = await fetch('http://localhost:3000/users/delete-profile-photo', {
+            const response = await fetch('https://labonneniche-backend.vercel.app/users/delete-profile-photo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ token: localStorage.getItem('token') }),
@@ -220,7 +221,7 @@ function AccountPage() {
 
                     <div className={styles.actions}>
                         <div className={styles.margin}>
-                            <button className={styles.button}><FontAwesomeIcon icon={faArrowDown} className={styles.buttonIcon}/>Voir la liste<br></br>de vos annonces</button>
+                            <Link href="/myAds"><button className={styles.button}><FontAwesomeIcon icon={faArrowDown} className={styles.buttonIcon}/>Voir la liste<br></br>de vos annonces</button></Link>
                         </div>
                         <div>
                             <button className={styles.buttonRight}><FontAwesomeIcon icon={faArrowDown} className={styles.buttonIcon} />Voir la liste<br></br>de vos contacts</button>

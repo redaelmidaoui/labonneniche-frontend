@@ -12,14 +12,10 @@ const Favorites = () => {
   const user = useSelector((state) => state.user);
   const favorites = useSelector((state) => state.favorites.value); // Liste des favoris
 
-  // useEffect(() => {
-  //     dispatch(addToken("ZuPdxUcinProBYSMsduSRf5JCLWqZEIH"));
-  //   }, [dispatch]);
-
   useEffect(() => {
     if (user.token) {
       
-      fetch(`http://localhost:3000/users/${user.token}/favorites`)
+      fetch(`https://labonneniche-backend.vercel.app/users/${user.token}/favorites`)
         .then((response) => response.json())
         .then((data) => {
           console.log("Données reçues :", data);
