@@ -5,7 +5,14 @@
     border-radius: 40px;
     background-color: white;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease; /* Animation fluide */
 }
+
+.card:hover {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Ombre plus visible */
+    transform: scale(1.02); /* Légère augmentation de taille */
+  }
 
 .divCard{
     width: 33%;

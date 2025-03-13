@@ -46,13 +46,28 @@
     color: #01A076;
 }
 
-.button {
+.button1 {
     margin: 10px;
     padding: 10px 30px;
     font-size: 1rem;
     font-weight: 500;
     color: #01A076;
     background-color: white;
+    border: none;
+    border-radius: 30px;
+    border: 1px solid #01A076;
+    cursor: pointer;
+    box-shadow: Opx 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.button2 {
+    margin: 10px;
+    padding: 10px 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    background-color: #01A076;
     border: none;
     border-radius: 30px;
     border: 1px solid #01A076;

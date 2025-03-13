@@ -16,12 +16,13 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 // Importation des reducers (états globaux gérés par Redux)
 import favorites from '../reducers/favorites';
 import user from '../reducers/user';
+import adDetails from '../reducers/adDetails';
 
 // Configuration de Redux Persist pour stocker l'état global dans le localStorage
 const persistConfig = { key: 'laBonneNiche', storage };
 
 // Combinaison des reducers pour créer un reducer global
-const rootReducer = combineReducers({ favorites, user });
+const rootReducer = combineReducers({ favorites, user, adDetails });
 
 // Création d'un reducer persistant à partir de la configuration
 const persistedReducer = persistReducer(persistConfig, rootReducer);

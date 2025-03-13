@@ -12,8 +12,8 @@ function Login() {
                     <h1 className={styles.h1}>la bonne</h1>
                     <h1 className={styles.h1complete}>niche</h1>
                 </div>
-                <Link href="/signin"><button className={styles.button}>CONNECTION</button></Link>
-                <Link href="/signup"><button className={styles.button}>INSCRIPTION</button></Link>
+                <Link href="/signin"><button className={styles.button1}>CONNECTION</button></Link>
+                <Link href="/signup"><button className={styles.button2}>INSCRIPTION</button></Link>
             </div>
         </div>
     );

@@ -49,10 +49,10 @@ function Home() {
       .catch((error) => console.error("Erreur récupération favoris", error));
   }, [user.token]); // Se déclenche lorsque le token change
 
-  const cards = adsData.map((card) => {
+  const cards = adsData.map((card, i) => {
     const isFav = favorites.includes(card._id)
     return <Card 
-      key={card._id} 
+      key={i} 
       id={card._id}
       picture={card.pictures[0]} 
       type={card.sort} 
@@ -125,9 +125,10 @@ function Home() {
 
       <div className={styles.divAds}>
       {adsData.length > 0 ? (
-       adsData.map((ad) => (
+       adsData.map((ad, i) => (
         <Card 
-          key={ad._id}
+          id={ad._id}
+          key={i}
           type={ad.sort}
           age={ad.age}
           genre={ad.gender}
