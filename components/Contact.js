@@ -18,6 +18,7 @@ function Contact(props) {
             <div>
                 <p>{props.contact.firstname}</p>
                 <p>{props.contact.mail}</p>
+                <p>{props.lastMessageDate}</p>
             </div>
         </div>
     );

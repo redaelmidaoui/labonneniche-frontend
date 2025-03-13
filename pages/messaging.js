@@ -44,9 +44,13 @@ function Messaging() {
     const contacts = contactList.map((data, key) => {
         const isSelected = selectedContactId === data._id;
         const lastMessage = data.messages[data.messages.length - 1];
-        let date_last_message = "";
+        let lastMessageDate = "";
         if (data.messages.length !== 0) {
-            date_last_message = new Date(lastMessage.date_of_dispatch);
+            const date_last_message = new Date(lastMessage.date_of_dispatch);
+            const day = String(date_last_message.getDate()).padStart(2, '0');
+            const month = String(date_last_message.getMonth() + 1).padStart(2, '0'); // Les mois débutent à 0
+            const year = date_last_message.getFullYear();
+            lastMessageDate =`last message : ${day}/${month}/${year}`;
         }
         return (
             <Contact 
@@ -55,6 +59,7 @@ function Messaging() {
                 contact={data.user1._id !== user._id ? data.user1 : data.user2}
                 onClick={() => contactClickHandler(data._id)}
                 isSelected={isSelected}
+                lastMessageDate={lastMessageDate}
             />
         );
     });
