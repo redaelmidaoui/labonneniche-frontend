@@ -10,8 +10,8 @@ import Navbar from "./Navbar";
 import { setFavorites } from "../reducers/favorites";
 
 function Home() {
-  const [adsData, setAdsData] = useState([]);
-  const [ads, setAds] = useState([]);
+  const [adsData, setAdsData] = useState([]);// Annonces filtrées
+  const [ads, setAds] = useState([]);// Toutes les annonces
 
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.value);
