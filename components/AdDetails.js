@@ -33,6 +33,7 @@ const AdDetails = () => {
   const sendMessageHandler = () => {
     if (!user.token) {
       alert("Veuillez vous connecter pour envoyer un message.");
+      router.push("/login");
       return;
     }
 
