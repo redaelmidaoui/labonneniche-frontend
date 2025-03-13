@@ -45,7 +45,6 @@ function SignInPage() {
 
     return (
         <div className={styles.signinContainer}>
-            <Header />
             <SocialLoginButtons />
 
             <form className={styles.form} onSubmit={handleSubmit}>

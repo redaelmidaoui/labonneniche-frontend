@@ -89,7 +89,7 @@ function SignUpPage() {
 
     return (
         <div className={styles.signupContainer}>
-            <Header />
+           
             <SocialLoginButtons />
 
             <div className={styles.formWrapper}>

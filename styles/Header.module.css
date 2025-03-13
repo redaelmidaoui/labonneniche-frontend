@@ -36,3 +36,22 @@
 .singleIcon.active {
     color: #01A076;
 }
+
+.addAdButton {
+    background-color: #01A076;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: 7%;
+    border: none;
+    box-shadow: Opx 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.plus{
+    font-size: 22px;
+    padding: 5px;
+}

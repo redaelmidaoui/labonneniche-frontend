@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { login } from '../reducers/user';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import { faCircleDown, faArrowDown, faPenToSquare, faSave } from '@fortawesome/free-solid-svg-icons';
 
 function AccountPage() {
@@ -204,7 +205,7 @@ function AccountPage() {
 
                     <div className={styles.actions}>
                         <div>
-                            <button className={styles.button}><FontAwesomeIcon icon={faArrowDown} className={styles.buttonIcon}/>Voir la liste<br></br>de vos annonces</button>
+                            <Link href="/myAds"><button className={styles.button}><FontAwesomeIcon icon={faArrowDown} className={styles.buttonIcon}/>Voir la liste<br></br>de vos annonces</button></Link>
                         </div>
                         <div>
                             <button className={styles.buttonRight}><FontAwesomeIcon icon={faArrowDown} className={styles.buttonIcon} />Voir la liste<br></br>de vos contacts</button>

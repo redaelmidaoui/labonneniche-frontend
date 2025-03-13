@@ -12,10 +12,6 @@ const Favorites = () => {
   const user = useSelector((state) => state.user);
   const favorites = useSelector((state) => state.favorites.value); // Liste des favoris
 
-  // useEffect(() => {
-  //     dispatch(addToken("ZuPdxUcinProBYSMsduSRf5JCLWqZEIH"));
-  //   }, [dispatch]);
-
   useEffect(() => {
     if (user.token) {
       
