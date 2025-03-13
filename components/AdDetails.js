@@ -12,7 +12,7 @@ const AdDetails = () => {
   const { id } = router.query;
   const dispatch = useDispatch();
   const adData = useSelector((state) => state.adDetails.value);
-
+  console.log(id);
   useEffect(() => {
     if (!id) return; // Ne rien faire si l'ID est undefined
 

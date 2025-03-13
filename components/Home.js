@@ -124,9 +124,10 @@ function Home() {
 
       <div className={styles.divAds}>
       {adsData.length > 0 ? (
-       adsData.map((ad) => (
+       adsData.map((ad, i) => (
         <Card 
-          key={ad._id}
+          id={ad._id}
+          key={i}
           type={ad.sort}
           age={ad.age}
           genre={ad.gender}
