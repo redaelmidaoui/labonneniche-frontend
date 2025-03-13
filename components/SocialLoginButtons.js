@@ -1,9 +1,13 @@
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
+// JWT = un jeton sécurisé qui permet d’authentifier un utilisateur sans qu’il ait besoin de se reconnecter à chaque requête.
+// Google OAuth = un système d’authentification qui permet aux utilisateurs de se connecter via leur compte Google, sans créer de mot de passe spécifique à ton site.
+
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'; // Importation des composants nécessaires pour l'authentification Google.
+import { jwtDecode } from 'jwt-decode'; // Permet de décoder le token JWT envoyé par Google.
 import { useDispatch } from 'react-redux';
 import { login } from '../reducers/user';
 import { useRouter } from 'next/router';
 
+// Récupération de l'ID client de Google depuis les variables d'environnement.
 const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
 
@@ -11,8 +15,9 @@ function SocialLoginButtons() {
     const dispatch = useDispatch();
     const router = useRouter();
 
+    // Fonction exécutée après une connexion réussie avec Google.
     const handleLogin = (credentialResponse) => {
-        const userData = jwtDecode(credentialResponse.credential);
+        const userData = jwtDecode(credentialResponse.credential); // Décodage du token JWT pour récupérer les infos de l'utilisateur.
     
         fetch('http://localhost:3000/users/google-login', {
             method: 'POST',
@@ -22,10 +27,10 @@ function SocialLoginButtons() {
         .then(res => res.json())
         .then(data => {
             if (data.result) {
-                dispatch(login( data.user ));
-                localStorage.setItem('token', data.user.token);
+                dispatch(login( data.user )); // Mise à jour du state Redux avec les infos utilisateur.
+                localStorage.setItem('token', data.user.token); // Stockage du token JWT pour maintenir la session.
                 alert("Connexion réussie !");
-                router.push('/');  // 🚀 Redirige vers l'accueil
+                router.push('/'); 
             } else {
                 alert("Erreur de connexion avec Google.");
             }
@@ -34,6 +39,7 @@ function SocialLoginButtons() {
     };
 
     return (
+        // Fournisseur OAuth de Google, qui englobe le composant de connexion.
         <GoogleOAuthProvider clientId={clientId}>
             <GoogleLogin
                 onSuccess={(credentialResponse) => handleLogin(credentialResponse)}

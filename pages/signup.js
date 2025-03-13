@@ -13,6 +13,7 @@ function SignUpPage() {
     const dispatch = useDispatch();
     const router = useRouter();
 
+    // État pour stocker les données du formulaire d'inscription
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
@@ -30,11 +31,13 @@ function SignUpPage() {
         },
     });
 
+    // Gestion du changement des champs du formulaire
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
+    // Gestion des réponses au questionnaire
     const handleQuestionnaire = (question, value) => {
         setFormData({
             ...formData,
@@ -55,12 +58,15 @@ function SignUpPage() {
         .then(data => {
             if (data.result) {
                 console.log("insh allah");
-                dispatch(login( data.newDoc )); // On récupère les données de l'utilisateur ici
+                dispatch(login( data.newDoc )); // Sauvegarde des infos de l'utilisateur dans Redux
+                localStorage.setItem('token', data.newDoc.token);
 
                 setTimeout(() => {
                     router.push('/');
                 }, 100);
-                router.push('/'); // Et enfin on redirige l'utilisateur !
+                router.push('/');
+
+                // Réinitialisation du formulaire après inscription
                 alert('Inscription réussie !');
                 setFormData({
                     firstname: '',
@@ -91,6 +97,8 @@ function SignUpPage() {
         <div className={styles.signupContainer}>
             <Header />
             <SocialLoginButtons />
+
+            <hr className={styles.line}/>
 
             <div className={styles.formWrapper}>
                 <div className={styles.leftContent}>

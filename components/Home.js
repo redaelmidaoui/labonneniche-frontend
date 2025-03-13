@@ -18,7 +18,6 @@ function Home() {
   const user = useSelector((state) => state.user);
   const token = user.token;
   const router = useRouter();
-  console.log("user", user);
 
   const handleFilter = (filteredAds) => {
     console.log("Données filtrées reçues dans Home.js :", filteredAds);
@@ -121,6 +120,8 @@ function Home() {
         <Link href="/"><span className={styles.link}>Annonces</span></Link>
         <Link href="/favorites"><span className={styles.link}>Favoris</span></Link>
       </div>
+
+      <hr className={styles.line}/>
 
       <div className={styles.divAds}>
       {adsData.length > 0 ? (

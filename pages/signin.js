@@ -33,6 +33,7 @@ function SignInPage() {
             console.log("Signin data :", data);
             if (data.result) {
                 dispatch(login( data.newDoc ));
+                localStorage.setItem('token', data.newDoc.token);
 
                 setFormData({ mail: '', password: '' });
                 router.push('/');
@@ -47,6 +48,8 @@ function SignInPage() {
         <div className={styles.signinContainer}>
             <Header />
             <SocialLoginButtons />
+            
+            <hr className={styles.line}/>
 
             <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.field}>

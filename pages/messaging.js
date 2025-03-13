@@ -6,6 +6,7 @@ import Contact from "../components/Contact";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from "react-redux";
+import Calendar from '../components/Calendar';
 
 function Messaging() {
     const [contactList, setContactList] = useState([]);
@@ -15,6 +16,7 @@ function Messaging() {
 
     const user = useSelector((state) => state.user);
     console.log(user);
+
 
     // Création d'une référence pour le conteneur des messages
     const messagesEndRef = useRef(null);
@@ -38,6 +40,7 @@ function Messaging() {
 
         if (findMessaging) {
             setMessageList(findMessaging.messages);
+            console.log("Messages chargés :", findMessaging.messages);
         }
     }
 
@@ -59,21 +62,30 @@ function Messaging() {
         );
     });
 
-    const messages = (messageList || []).map((data, key) => (
-        <div 
-            className={styles.message} 
-            key={key} 
-            style={{ flexDirection: user._id === data.id_editor ? "row-reverse" : "row" }}
-        >
-            <p>{data.content}</p>
-        </div>
-    ));
-    
+    const messages = (messageList || []).map((data, key) => {
+        console.log("Message data:", data);
+        const isSender = String(user._id) === String(data.id_editor);
+        console.log("isSender:", isSender, "user._id:", user._id, "id_editor:", data.id_editor); 
+        console.log(isSender)
+
+        return (
+            <div 
+                className={`${styles.message} ${isSender ? styles.sentMessage : styles.receivedMessage}`} 
+                key={key} 
+                style={{ flexDirection: isSender ? "row-reverse" : "row" }}
+            >
+                <p>{data.content}</p>
+            </div>
+        );
+    });
+
+    console.log(user._id);
 
     const sendHandler = () => {
         if (messageText.trim() !== "") {  // Empêcher les messages vides
-            const newMessage = { id_editor: user._id, content: messageText };
+            const newMessage = { id_editor: String(user._id), content: messageText };
             setMessageList([...messageList, newMessage]);
+            console.log("Nouveau message envoyé:", newMessage);
             fetch(`http://localhost:3000/messaging/addMessage/${selectedContactId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -86,9 +98,10 @@ function Messaging() {
     return (
         <div className={styles.container}>
             <Header />
+            <hr className={styles.line}/>
             <div className={styles.contentContainer}>
                 <div className={styles.contactsContainer}>
-                    {contacts}
+                    <span className={styles.contacts}>{contacts}</span>
                 </div>
                 <div className={styles.messagingContainer}>
                     <div className={styles.messagesContainer}>
@@ -104,6 +117,9 @@ function Messaging() {
                         />
                         <FontAwesomeIcon icon={faPaperPlane} onClick={sendHandler} />
                     </div>
+                </div>
+                <div className={styles.calendarContainer}>
+                    <Calendar />
                 </div>
             </div>
             <Footer />

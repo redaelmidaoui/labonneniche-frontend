@@ -16,8 +16,8 @@ function Contact(props) {
                 height={100}
             />
             <div>
-                <p>{props.contact.firstname}</p>
-                <p>{props.contact.mail}</p>
+                <p className={styles.userInfoName}>{props.contact.firstname}</p>
+                <p className={styles.userInfo}>{props.contact.mail}</p>
             </div>
         </div>
     );
